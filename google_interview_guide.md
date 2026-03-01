@@ -8,19 +8,19 @@
 
 | # | Topic | Problems | Link |
 |---|-------|----------|------|
-| 1 | Arrays, Hashing, Two Pointers, Sliding Window | 40 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/01_arrays_hashing.md) |
-| 2 | Strings & Pattern Matching | 30 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/02_strings.md) |
-| 3 | Linked Lists | 20 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/03_linked_lists.md) |
-| 4 | Stacks & Queues | 25 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/04_stacks_queues.md) |
-| 5 | Trees & BST | 40 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/05_trees.md) |
-| 6 | Graphs | 45 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/06_graphs.md) |
-| 7 | Dynamic Programming | 50 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/07_dynamic_programming.md) |
-| 8 | Binary Search | 20 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/08_binary_search.md) |
-| 9 | Heaps & Priority Queues | 20 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/09_heaps.md) |
-| 10 | Greedy & Intervals | 20 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/10_greedy.md) |
-| 11 | Backtracking & Recursion | 15 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/11_backtracking.md) |
-| 12 | Tries & Advanced DS | 10 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/12_tries_advanced.md) |
-| 13 | Math, Bit Manipulation & Design | 20 | [Open List](file:///C:/Users/athar/.gemini/antigravity/brain/ef5480fd-fbf5-4d6c-9fd3-4dd51b219205/13_math_bits_design.md) |
+| 1 | Arrays, Hashing, Two Pointers, Sliding Window | 40 | [Open List](./01_arrays_hashing.md) |
+| 2 | Strings & Pattern Matching | 30 | [Open List](./02_strings.md) |
+| 3 | Linked Lists | 20 | [Open List](./03_linked_lists.md) |
+| 4 | Stacks & Queues | 25 | [Open List](./04_stacks_queues.md) |
+| 5 | Trees & BST | 40 | [Open List](./05_trees.md) |
+| 6 | Graphs | 45 | [Open List](./06_graphs.md) |
+| 7 | Dynamic Programming | 50 | [Open List](./07_dynamic_programming.md) |
+| 8 | Binary Search | 20 | [Open List](./08_binary_search.md) |
+| 9 | Heaps & Priority Queues | 20 | [Open List](./09_heaps.md) |
+| 10 | Greedy & Intervals | 20 | [Open List](./10_greedy.md) |
+| 11 | Backtracking & Recursion | 15 | [Open List](./11_backtracking.md) |
+| 12 | Tries & Advanced DS | 10 | [Open List](./12_tries_advanced.md) |
+| 13 | Math, Bit Manipulation & Design | 20 | [Open List](./13_math_bits_design.md) |
 
 > **Total: ~355 problems** (Medium + Hard) — complete coverage of every DSA pattern Google tests.
 
