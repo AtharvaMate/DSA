@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leetcode Google Top 350 Interview Questions</title>
+  <link rel="icon" href="https://toppng.com/uploads/preview/google-favicon-vector-11573977012mieoxurfqx.png"
+    type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --bg: #080c10;
+      --surface: #0e1419;
+      --surface2: #141c24;
+      --surface3: #1a2433;
+      --border: #1e2d3d;
+      --border2: #263545;
+      --text: #dce8f5;
+      --text-muted: #5a7a99;
+      --text-dim: #3a5a77;
+      --g-blue: #4285f4;
+      --g-red: #ea4335;
+      --g-yellow: #fbbc04;
+      --g-green: #34a853;
+      --medium: #f0a500;
+      --hard: #ef4444;
+      --easy: #22c55e;
+      --accent: #4285f4;
+      --accent2: #60a5fa;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh
+    }
+
+    /* === HEADER === */
+    .header {
+      background: linear-gradient(135deg, #080c10 0%, #0d1929 50%, #080c10 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(66, 133, 244, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: 30%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(52, 168, 83, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .google-dots {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%
+    }
+
+    .header-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .header-title span.g {
+      color: var(--g-blue)
+    }
+
+    .header-title span.o1 {
+      color: var(--g-red)
+    }
+
+    .header-title span.o2 {
+      color: var(--g-yellow)
+    }
+
+    .header-title span.g2 {
+      color: var(--g-blue)
+    }
+
+    .header-title span.l {
+      color: var(--g-green)
+    }
+
+    .header-title span.e {
+      color: var(--g-red)
+    }
+
+    .header-sub {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 28px
+    }
+
+    /* === STATS BAR === */
+    .stats-bar {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .stat-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .stat-chip .val {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .stat-chip .lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .8px
+    }
+
+    .stat-chip.blue .val {
+      color: var(--g-blue)
+    }
+
+    .stat-chip.yellow .val {
+      color: var(--medium)
+    }
+
+    .stat-chip.red .val {
+      color: var(--hard)
+    }
+
+    .stat-chip.green .val {
+      color: var(--g-green)
+    }
+
+    /* === PROGRESS === */
+    .progress-section {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .progress-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      font-family: 'DM Mono', monospace
+    }
+
+    .progress-bar-wrap {
+      flex: 1;
+      min-width: 200px;
+      height: 6px;
+      background: var(--surface3);
+      border-radius: 3px;
+      overflow: hidden
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--g-blue), var(--g-green));
+      border-radius: 3px;
+      transition: width .4s ease
+    }
+
+    .progress-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--accent2);
+      white-space: nowrap
+    }
+
+    .reset-btn {
+      background: transparent;
+      border: 1px solid var(--border2);
+      color: var(--text-muted);
+      padding: 4px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s;
+    }
+
+    .reset-btn:hover {
+      border-color: var(--g-red);
+      color: var(--g-red)
+    }
+
+    /* === TIPS SECTION === */
+    .tips-toggle {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+    }
+
+    .tips-toggle-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      padding: 16px 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: color .2s;
+    }
+
+    .tips-toggle-btn:hover {
+      color: var(--accent2)
+    }
+
+    .tips-toggle-btn .arrow {
+      margin-left: auto;
+      color: var(--text-muted);
+      font-size: 18px;
+      transition: transform .3s;
+      display: inline-block;
+    }
+
+    .tips-toggle-btn.open .arrow {
+      transform: rotate(180deg)
+    }
+
+    .tips-content {
+      display: none;
+      padding: 0 0 28px;
+    }
+
+    .tips-content.open {
+      display: block
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 8px
+    }
+
+    .tip-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      border-left: 3px solid;
+    }
+
+    .tip-card:nth-child(1) {
+      border-color: var(--g-blue)
+    }
+
+    .tip-card:nth-child(2) {
+      border-color: var(--g-green)
+    }
+
+    .tip-card:nth-child(3) {
+      border-color: var(--g-yellow)
+    }
+
+    .tip-card:nth-child(4) {
+      border-color: var(--g-red)
+    }
+
+    .tip-card:nth-child(5) {
+      border-color: #a855f7
+    }
+
+    .tip-card:nth-child(6) {
+      border-color: #06b6d4
+    }
+
+    .tip-card:nth-child(7) {
+      border-color: var(--g-blue)
+    }
+
+    .tip-card:nth-child(8) {
+      border-color: var(--g-green)
+    }
+
+    .tip-card:nth-child(9) {
+      border-color: var(--g-yellow)
+    }
+
+    .tip-card:nth-child(10) {
+      border-color: var(--g-red)
+    }
+
+    .tip-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: .3px
+    }
+
+    .tip-card p {
+      color: var(--text-muted);
+      font-size: 12.5px;
+      line-height: 1.65
+    }
+
+    .tip-card p strong {
+      color: var(--text)
+    }
+
+    /* === CONTROLS === */
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 12, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 40px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-wrap {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 9px 14px 9px 36px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-dim)
+    }
+
+    .search-input:focus {
+      border-color: var(--accent)
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 15px;
+      pointer-events: none
+    }
+
+    .filter-btns {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap
+    }
+
+    .filter-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 12.5px;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--border2);
+      color: var(--text)
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 500
+    }
+
+    .filter-btn.active.yellow {
+      background: var(--medium);
+      border-color: var(--medium);
+      color: #000
+    }
+
+    .filter-btn.active.red {
+      background: var(--hard);
+      border-color: var(--hard);
+      color: #fff
+    }
+
+    .filter-btn.active.green {
+      background: var(--easy);
+      border-color: var(--easy);
+      color: #000
+    }
+
+    .topic-select {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 8px 14px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+      min-width: 180px;
+    }
+
+    .topic-select option {
+      background: var(--surface2);
+      color: var(--text)
+    }
+
+    /* === MAIN CONTENT === */
+    .main {
+      padding: 0 40px 60px
+    }
+
+    /* === TOPIC SECTION === */
+    .topic-section {
+      margin-top: 36px
+    }
+
+    .topic-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px 10px 0 0;
+      border-bottom: none;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .topic-header:hover .topic-name {
+      color: var(--accent2)
+    }
+
+    .topic-icon {
+      font-size: 18px
+    }
+
+    .topic-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+      transition: color .2s;
+    }
+
+    .topic-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .topic-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--surface3);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .topic-progress-mini {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--g-green);
+    }
+
+    .topic-arrow {
+      color: var(--text-dim);
+      font-size: 14px;
+      transition: transform .25s
+    }
+
+    .topic-section.collapsed .topic-arrow {
+      transform: rotate(-90deg)
+    }
+
+    /* === TABLE === */
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+    }
+
+    .topic-section.collapsed .table-wrap {
+      display: none
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    thead {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border)
+    }
+
+    th {
+      padding: 10px 16px;
+      text-align: left;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    th:first-child {
+      width: 44px;
+      text-align: center
+    }
+
+    th:nth-child(2) {
+      width: 60px;
+      text-align: center
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .12s;
+      display: table-row;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none
+    }
+
+    tbody tr:hover {
+      background: var(--surface2)
+    }
+
+    tbody tr.solved {
+      background: rgba(52, 168, 83, 0.04)
+    }
+
+    tbody tr.solved:hover {
+      background: rgba(52, 168, 83, 0.07)
+    }
+
+    td {
+      padding: 11px 16px;
+      vertical-align: middle
+    }
+
+    td:first-child {
+      text-align: center;
+      padding: 11px 8px
+    }
+
+    /* checkbox */
+    .check-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 1.5px solid var(--border2);
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .15s;
+      flex-shrink: 0;
+    }
+
+    .check-btn:hover {
+      border-color: var(--g-green)
+    }
+
+    .check-btn.checked {
+      background: var(--g-green);
+      border-color: var(--g-green);
+    }
+
+    .check-btn.checked::after {
+      content: '✓';
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* number */
+    .prob-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* title link */
+    .prob-link {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 400;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
+    }
+
+    .prob-link:hover {
+      color: var(--accent2)
+    }
+
+    .prob-link:hover .ext-icon {
+      opacity: 1
+    }
+
+    .ext-icon {
+      opacity: 0;
+      font-size: 10px;
+      color: var(--text-dim);
+      transition: opacity .15s
+    }
+
+    /* difficulty */
+    .diff {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 12px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .diff.Medium {
+      background: rgba(240, 165, 0, 0.12);
+      color: var(--medium);
+      border: 1px solid rgba(240, 165, 0, 0.2)
+    }
+
+    .diff.Hard {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--hard);
+      border: 1px solid rgba(239, 68, 68, 0.2)
+    }
+
+    .diff.Easy {
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--easy);
+      border: 1px solid rgba(34, 197, 94, 0.2)
+    }
+
+    /* tags */
+    .tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap
+    }
+
+    .tag {
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--surface3);
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* === EMPTY STATE === */
+    .empty-state {
+      text-align: center;
+      padding: 60px;
+      color: var(--text-muted);
+    }
+
+    .empty-state .emoji {
+      font-size: 40px;
+      margin-bottom: 12px
+    }
+
+    /* === FOOTER === */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 40px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 12px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* === NO DISPLAY === */
+    .hidden {
+      display: none !important
+    }
+
+    /* responsive */
+    @media(max-width:768px) {
+
+      .header,
+      .controls,
+      .progress-section,
+      .tips-toggle,
+      .main,
+      .footer {
+        padding-left: 16px;
+        padding-right: 16px
+      }
+
+      .stats-bar {
+        gap: 10px
+      }
+
+      .stat-chip {
+        padding: 8px 12px
+      }
+
+      .tags {
+        display: none
+      }
+
+      .filter-btns {
+        gap: 4px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="google-dots">
+      <div class="dot" style="background:var(--g-blue)"></div>
+      <div class="dot" style="background:var(--g-red)"></div>
+      <div class="dot" style="background:var(--g-yellow)"></div>
+      <div class="dot" style="background:var(--g-green)"></div>
+    </div>
+    <div class="header-title">
+      <span class="g">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span
+        class="l">l</span><span class="e">e</span> Interview Prep
+    </div>
+    <div
+      style="font-family:'Syne',sans-serif;font-size:clamp(16px,2.5vw,26px);font-weight:600;color:var(--text-muted);margin-bottom:14px;letter-spacing:-0.5px">
+      Top 350 LeetCode Problems — Curated for Google Freshers
+    </div>
+    <div class="header-sub">
+      Every problem hand-picked for Google's L3 fresher interview patterns — based on real interview frequency data.
+      Covers all critical DSA topics with the right depth to crack Google interviews. Built for a 5-month focused
+      preparation plan.
+    </div>
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-chip"><span class="val" id="totalCount">350</span><span class="lbl">Total</span></div>
+      <div class="stat-chip yellow"><span class="val" id="medCount">—</span><span class="lbl">Medium</span></div>
+      <div class="stat-chip red"><span class="val" id="hardCount">—</span><span class="lbl">Hard</span></div>
+      <div class="stat-chip green"><span class="val" id="solvedCount">0</span><span class="lbl">Solved</span></div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <span class="progress-label">YOUR PROGRESS</span>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar" style="width:0%"></div>
+    </div>
+    <span class="progress-count" id="progressText">0 / 350</span>
+    <button class="reset-btn" onclick="resetProgress()">Reset</button>
+  </div>
+
+  <div class="tips-toggle">
+    <button class="tips-toggle-btn" id="tipsBtn" onclick="toggleTips()">
+      🎯 Expert Tips to Crack Google Interviews
+      <span class="arrow">▼</span>
+    </button>
+    <div class="tips-content" id="tipsContent">
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h4>🗺️ The 5-Month Roadmap</h4>
+          <p><strong>Month 1:</strong> Arrays, Strings, Two Pointers, Sliding Window, Hashing (fundamentals)<br>
+            <strong>Month 2:</strong> Binary Search, Linked Lists, Stacks, Queues, Trees<br>
+            <strong>Month 3:</strong> Graphs (BFS/DFS), Heaps, Union Find, Tries<br>
+            <strong>Month 4:</strong> Dynamic Programming (all variants), Backtracking, Greedy<br>
+            <strong>Month 5:</strong> Full mock interviews, revision, system design basics, behavioral prep
+          </p>
+        </div>
+        <div class="tip-card">
+          <h4>🧠 Google's Interview Style</h4>
+          <p>Google prioritizes <strong>thought process over final answer</strong>. Always think aloud. They test: Can
+            you break down a problem? Handle edge cases? Optimize iteratively? Start with a brute force, clearly state
+            its complexity, then improve. Interviewers often redirect or add constraints — be flexible.</p>
+        </div>
+        <div class="tip-card">
+          <h4>⏱️ The 45-Minute Framework</h4>
+          <p><strong>0–5 min:</strong> Understand & clarify (ask about constraints, edge cases, input size)<br>
+            <strong>5–10 min:</strong> Discuss approach aloud, brute force first<br>
+            <strong>10–35 min:</strong> Code the optimal solution cleanly<br>
+            <strong>35–40 min:</strong> Test with examples & edge cases<br>
+            <strong>40–45 min:</strong> Complexity analysis & follow-ups
+          </p>
+        </div>
+        <div class="tip-card">
+          <h4>📊 Complexity Mastery is Non-Negotiable</h4>
+          <p>Every solution must be followed by <strong>time and space complexity analysis</strong> — unprompted. Google
+            interviewers expect you to know O(n log n) vs O(n²) implications. Practice saying "This is O(n) time and
+            O(1) space because…" out loud after every problem you solve.</p>
+        </div>
+        <div class="tip-card">
+          <h4>🔥 Google's Favorite Patterns</h4>
+          <p>BFS/DFS on graphs and trees, Sliding Window, Two Pointers, Binary Search on answer, DP (particularly on
+            strings/intervals), Topological Sort, and Dijkstra's. Master these patterns deeply — <strong>~70% of Google
+              problems</strong> map to these 8 patterns.</p>
+        </div>
+        <div class="tip-card">
+          <h4>📝 Code Quality Matters</h4>
+          <p>Write <strong>clean, readable, production-style code</strong>. Use meaningful variable names (not a, b, c).
+            Modularize with helper functions. Avoid hacky tricks. Google engineers review your code as if it's going
+            into production. Comments explaining non-obvious logic are appreciated.</p>
+        </div>
+        <div class="tip-card">
+          <h4>💬 Master the Behavioral Round (Googleyness)</h4>
+          <p>Prepare 8–10 STAR stories covering: leadership, conflict resolution, failing and learning, handling
+            ambiguity, impact, and working cross-functionally. Google assesses <strong>Googleyness</strong> —
+            intellectual humility, comfort with ambiguity, and bias to action. Practice with a partner weekly.</p>
+        </div>
+        <div class="tip-card">
+          <h4>🏗️ System Design (For Senior Roles)</h4>
+          <p>For L4+: Study designing URL shortener, YouTube, Google Search, Google Maps, Gmail. Focus on
+            <strong>scalability, consistency, availability tradeoffs</strong>. Read "Designing Data-Intensive
+            Applications" by Kleppmann. Practice drawing architecture diagrams and explaining component choices.
+          </p>
+        </div>
+        <div class="tip-card">
+          <h4>📅 Daily Practice Ritual</h4>
+          <p><strong>Phase 1 (Months 1–3):</strong> 3 new problems/day + 1 revision<br>
+            <strong>Phase 2 (Month 4):</strong> 2 new + 2 revisions + 1 timed mock<br>
+            <strong>Phase 3 (Month 5):</strong> Full mock interviews daily (use Pramp, Interviewing.io). Track weak
+            patterns in a spreadsheet. <strong>Quality over quantity</strong> — understand the why deeply.
+          </p>
+        </div>
+        <div class="tip-card">
+          <h4>⚡ Are 350 Problems Enough?</h4>
+          <p><strong>Yes — with depth.</strong> These 350 are the highest-frequency Google interview problems. The goal
+            isn't quantity but truly internalizing the patterns. If you understand <em>why</em> the solution
+            works (not just how), and can solve unseen variations in 20–30 min, you are ready. Review each problem 2–3
+            times.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" id="searchInput" placeholder="Search problems..."
+        oninput="applyFilters()">
+    </div>
+    <div class="filter-btns">
+      <button class="filter-btn active" data-diff="All" onclick="setDiff(this,'All')">All</button>
+      <button class="filter-btn yellow" data-diff="Medium" onclick="setDiff(this,'Medium')">Medium</button>
+      <button class="filter-btn red" data-diff="Hard" onclick="setDiff(this,'Hard')">Hard</button>
+      <button class="filter-btn green" data-diff="Easy" onclick="setDiff(this,'Easy')">Easy</button>
+    </div>
+    <select class="topic-select" id="topicFilter" onchange="applyFilters()">
+      <option value="All">All Topics</option>
+    </select>
+    <button class="filter-btn" id="solvedFilterBtn" onclick="toggleSolvedFilter()">Show Solved Only</button>
+  </div>
+
+  <div class="main" id="mainContent"></div>
+
+  <div class="footer">
+    Built for Google Fresher Interview Prep · 350 High-Frequency Curated Problems · Track your progress
+    session-by-session ·
+    <span style="color:var(--g-blue)">Good Luck! 🚀</span>
+  </div>
+
+  <script>
+    // =============================================
+    // PROBLEM DATA
+    // Format: [number, title, slug, difficulty, topic, tags]
+    // =============================================
+    const PROBLEMS = [
+
+      // ========== ARRAYS & STRINGS (40) ==========
+      [3, "Longest Substring Without Repeating Characters", "longest-substring-without-repeating-characters", "Medium", "Arrays & Strings", "sliding window,hash map"],
+      [4, "Median of Two Sorted Arrays", "median-of-two-sorted-arrays", "Hard", "Arrays & Strings", "binary search,divide & conquer"],
+      [5, "Longest Palindromic Substring", "longest-palindromic-substring", "Medium", "Arrays & Strings", "dp,expand around center"],
+      [8, "String to Integer (atoi)", "string-to-integer-atoi", "Medium", "Arrays & Strings", "string,parsing"],
+      [11, "Container With Most Water", "container-with-most-water", "Medium", "Arrays & Strings", "two pointers,greedy"],
+      [15, "3Sum", "3sum", "Medium", "Arrays & Strings", "two pointers,sorting"],
+      [16, "3Sum Closest", "3sum-closest", "Medium", "Arrays & Strings", "two pointers,sorting"],
+      [26, "Remove Duplicates from Sorted Array", "remove-duplicates-from-sorted-array", "Easy", "Arrays & Strings", "two pointers"],
+      [31, "Next Permutation", "next-permutation", "Medium", "Arrays & Strings", "array,in-place"],
+      [36, "Valid Sudoku", "valid-sudoku", "Medium", "Arrays & Strings", "hash set,matrix"],
+      [41, "First Missing Positive", "first-missing-positive", "Hard", "Arrays & Strings", "index marking,O(1) space"],
+      [42, "Trapping Rain Water", "trapping-rain-water", "Hard", "Arrays & Strings", "two pointers,stack,dp"],
+      [45, "Jump Game II", "jump-game-ii", "Medium", "Arrays & Strings", "greedy,bfs"],
+      [48, "Rotate Image", "rotate-image", "Medium", "Arrays & Strings", "matrix,in-place,transpose"],
+      [49, "Group Anagrams", "group-anagrams", "Medium", "Arrays & Strings", "hash map,sorting"],
+      [53, "Maximum Subarray", "maximum-subarray", "Medium", "Arrays & Strings", "kadane's,dp"],
+      [54, "Spiral Matrix", "spiral-matrix", "Medium", "Arrays & Strings", "matrix,simulation"],
+      [55, "Jump Game", "jump-game", "Medium", "Arrays & Strings", "greedy"],
+      [56, "Merge Intervals", "merge-intervals", "Medium", "Arrays & Strings", "sorting,intervals"],
+      [57, "Insert Interval", "insert-interval", "Medium", "Arrays & Strings", "intervals,linear scan"],
+      [68, "Text Justification", "text-justification", "Hard", "Arrays & Strings", "greedy,string"],
+      [73, "Set Matrix Zeroes", "set-matrix-zeroes", "Medium", "Arrays & Strings", "matrix,in-place"],
+      [75, "Sort Colors", "sort-colors", "Medium", "Arrays & Strings", "dutch national flag,two pointers"],
+      [76, "Minimum Window Substring", "minimum-window-substring", "Hard", "Arrays & Strings", "sliding window,hash map"],
+      [84, "Largest Rectangle in Histogram", "largest-rectangle-in-histogram", "Hard", "Arrays & Strings", "monotonic stack"],
+      [85, "Maximal Rectangle", "maximal-rectangle", "Hard", "Arrays & Strings", "stack,dp,matrix"],
+      [128, "Longest Consecutive Sequence", "longest-consecutive-sequence", "Medium", "Arrays & Strings", "hash set,union find"],
+      [134, "Gas Station", "gas-station", "Medium", "Arrays & Strings", "greedy,prefix sum"],
+      [135, "Candy", "candy", "Hard", "Arrays & Strings", "greedy,two pass"],
+      [152, "Maximum Product Subarray", "maximum-product-subarray", "Medium", "Arrays & Strings", "dp,prefix"],
+      [189, "Rotate Array", "rotate-array", "Medium", "Arrays & Strings", "reverse,in-place"],
+      [238, "Product of Array Except Self", "product-of-array-except-self", "Medium", "Arrays & Strings", "prefix,suffix,O(1) space"],
+      [239, "Sliding Window Maximum", "sliding-window-maximum", "Hard", "Arrays & Strings", "deque,monotonic"],
+      [289, "Game of Life", "game-of-life", "Medium", "Arrays & Strings", "matrix,in-place,bit manipulation"],
+      [334, "Increasing Triplet Subsequence", "increasing-triplet-subsequence", "Medium", "Arrays & Strings", "greedy"],
+      [380, "Insert Delete GetRandom O(1)", "insert-delete-getrandom-o1", "Medium", "Arrays & Strings", "hash map,array,design"],
+      [560, "Subarray Sum Equals K", "subarray-sum-equals-k", "Medium", "Arrays & Strings", "prefix sum,hash map"],
+      [647, "Palindromic Substrings", "palindromic-substrings", "Medium", "Arrays & Strings", "expand around center,dp"],
+      [735, "Asteroid Collision", "asteroid-collision", "Medium", "Arrays & Strings", "stack,simulation"],
+      [1004, "Max Consecutive Ones III", "max-consecutive-ones-iii", "Medium", "Arrays & Strings", "sliding window"],
+
+      // ========== TWO POINTERS (14) ==========
+      [88, "Merge Sorted Array", "merge-sorted-array", "Easy", "Two Pointers", "two pointers,in-place"],
+      [125, "Valid Palindrome", "valid-palindrome", "Easy", "Two Pointers", "two pointers,string"],
+      [167, "Two Sum II - Input Array Is Sorted", "two-sum-ii-input-array-is-sorted", "Medium", "Two Pointers", "two pointers,binary search"],
+      [209, "Minimum Size Subarray Sum", "minimum-size-subarray-sum", "Medium", "Two Pointers", "sliding window,two pointers"],
+      [287, "Find the Duplicate Number", "find-the-duplicate-number", "Medium", "Two Pointers", "Floyd's cycle,binary search"],
+      [392, "Is Subsequence", "is-subsequence", "Easy", "Two Pointers", "two pointers,greedy"],
+      [424, "Longest Repeating Character Replacement", "longest-repeating-character-replacement", "Medium", "Two Pointers", "sliding window,freq map"],
+      [567, "Permutation in String", "permutation-in-string", "Medium", "Two Pointers", "sliding window,freq array"],
+      [581, "Shortest Unsorted Continuous Subarray", "shortest-unsorted-continuous-subarray", "Medium", "Two Pointers", "sorting,linear scan"],
+      [680, "Valid Palindrome II", "valid-palindrome-ii", "Easy", "Two Pointers", "two pointers,greedy"],
+      [763, "Partition Labels", "partition-labels", "Medium", "Two Pointers", "greedy,last occurrence"],
+      [881, "Boats to Save People", "boats-to-save-people", "Medium", "Two Pointers", "two pointers,greedy,sorting"],
+      [986, "Interval List Intersections", "interval-list-intersections", "Medium", "Two Pointers", "two pointers,intervals"],
+      [1838, "Frequency of the Most Frequent Element", "frequency-of-the-most-frequent-element", "Medium", "Two Pointers", "sliding window,sorting"],
+
+      // ========== SLIDING WINDOW (13) ==========
+      [30, "Substring with Concatenation of All Words", "substring-with-concatenation-of-all-words", "Hard", "Sliding Window", "sliding window,hash map"],
+      [340, "Longest Substring with At Most K Distinct Characters", "longest-substring-with-at-most-k-distinct-characters", "Medium", "Sliding Window", "sliding window,hash map"],
+      [438, "Find All Anagrams in a String", "find-all-anagrams-in-a-string", "Medium", "Sliding Window", "sliding window,freq array"],
+      [904, "Fruit Into Baskets", "fruit-into-baskets", "Medium", "Sliding Window", "sliding window,hash map"],
+      [992, "Subarrays with K Different Integers", "subarrays-with-k-different-integers", "Hard", "Sliding Window", "sliding window,atmost(k)-atmost(k-1)"],
+      [1052, "Grumpy Bookstore Owner", "grumpy-bookstore-owner", "Medium", "Sliding Window", "sliding window,prefix sum"],
+      [1248, "Count Number of Nice Subarrays", "count-number-of-nice-subarrays", "Medium", "Sliding Window", "sliding window,prefix sum"],
+      [1423, "Maximum Points You Can Obtain from Cards", "maximum-points-you-can-obtain-from-cards", "Medium", "Sliding Window", "sliding window,prefix sum"],
+      [1493, "Longest Subarray of 1's After Deleting One Element", "longest-subarray-of-1s-after-deleting-one-element", "Medium", "Sliding Window", "sliding window"],
+      [1658, "Minimum Operations to Reduce X to Zero", "minimum-operations-to-reduce-x-to-zero", "Medium", "Sliding Window", "sliding window,hash map"],
+      [2024, "Maximize the Confusion of an Exam", "maximize-the-confusion-of-an-exam", "Medium", "Sliding Window", "sliding window"],
+      [187, "Repeated DNA Sequences", "repeated-dna-sequences", "Medium", "Sliding Window", "sliding window,hash set,rolling hash"],
+      [1234, "Replace the Substring for Balanced String", "replace-the-substring-for-balanced-string", "Medium", "Sliding Window", "sliding window,freq map"],
+
+      // ========== BINARY SEARCH (22) ==========
+      [33, "Search in Rotated Sorted Array", "search-in-rotated-sorted-array", "Medium", "Binary Search", "binary search,pivot"],
+      [34, "Find First and Last Position of Element in Sorted Array", "find-first-and-last-position-of-element-in-sorted-array", "Medium", "Binary Search", "binary search,lower/upper bound"],
+      [74, "Search a 2D Matrix", "search-a-2d-matrix", "Medium", "Binary Search", "binary search,matrix"],
+      [153, "Find Minimum in Rotated Sorted Array", "find-minimum-in-rotated-sorted-array", "Medium", "Binary Search", "binary search"],
+      [154, "Find Minimum in Rotated Sorted Array II", "find-minimum-in-rotated-sorted-array-ii", "Hard", "Binary Search", "binary search,duplicates"],
+      [162, "Find Peak Element", "find-peak-element", "Medium", "Binary Search", "binary search,local peak"],
+      [240, "Search a 2D Matrix II", "search-a-2d-matrix-ii", "Medium", "Binary Search", "binary search,divide & conquer"],
+      [315, "Count of Smaller Numbers After Self", "count-of-smaller-numbers-after-self", "Hard", "Binary Search", "binary search,merge sort,BIT"],
+      [378, "Kth Smallest Element in a Sorted Matrix", "kth-smallest-element-in-a-sorted-matrix", "Medium", "Binary Search", "binary search,heap"],
+      [410, "Split Array Largest Sum", "split-array-largest-sum", "Hard", "Binary Search", "binary search on answer,dp"],
+      [528, "Random Pick with Weight", "random-pick-with-weight", "Medium", "Binary Search", "binary search,prefix sum,random"],
+      [658, "Find K Closest Elements", "find-k-closest-elements", "Medium", "Binary Search", "binary search,two pointers"],
+      [719, "Find K-th Smallest Pair Distance", "find-k-th-smallest-pair-distance", "Hard", "Binary Search", "binary search,two pointers,sorting"],
+      [875, "Koko Eating Bananas", "koko-eating-bananas", "Medium", "Binary Search", "binary search on answer"],
+      [981, "Time Based Key-Value Store", "time-based-key-value-store", "Medium", "Binary Search", "binary search,hash map,design"],
+      [1011, "Capacity To Ship Packages Within D Days", "capacity-to-ship-packages-within-d-days", "Medium", "Binary Search", "binary search on answer"],
+      [1044, "Longest Duplicate Substring", "longest-duplicate-substring", "Hard", "Binary Search", "binary search,rolling hash,suffix array"],
+      [1095, "Find in Mountain Array", "find-in-mountain-array", "Hard", "Binary Search", "binary search,interactive"],
+      [1146, "Snapshot Array", "snapshot-array", "Medium", "Binary Search", "binary search,design"],
+      [1552, "Magnetic Force Between Two Balls", "magnetic-force-between-two-balls", "Medium", "Binary Search", "binary search on answer,greedy"],
+      [2300, "Successful Pairs of Spells and Potions", "successful-pairs-of-spells-and-potions", "Medium", "Binary Search", "binary search,sorting"],
+      [2616, "Minimize the Maximum Difference of Pairs", "minimize-the-maximum-difference-of-pairs", "Medium", "Binary Search", "binary search on answer,greedy"],
+
+      // ========== LINKED LISTS (18) ==========
+      [2, "Add Two Numbers", "add-two-numbers", "Medium", "Linked Lists", "linked list,math,carry"],
+      [19, "Remove Nth Node From End of List", "remove-nth-node-from-end-of-list", "Medium", "Linked Lists", "two pointers,fast-slow"],
+      [21, "Merge Two Sorted Lists", "merge-two-sorted-lists", "Easy", "Linked Lists", "linked list,recursion"],
+      [23, "Merge k Sorted Lists", "merge-k-sorted-lists", "Hard", "Linked Lists", "heap,divide & conquer"],
+      [25, "Reverse Nodes in k-Group", "reverse-nodes-in-k-group", "Hard", "Linked Lists", "linked list,recursion,stack"],
+      [82, "Remove Duplicates from Sorted List II", "remove-duplicates-from-sorted-list-ii", "Medium", "Linked Lists", "two pointers,linked list"],
+      [92, "Reverse Linked List II", "reverse-linked-list-ii", "Medium", "Linked Lists", "linked list,in-place reverse"],
+      [138, "Copy List with Random Pointer", "copy-list-with-random-pointer", "Medium", "Linked Lists", "hash map,linked list,cloning"],
+      [141, "Linked List Cycle", "linked-list-cycle", "Easy", "Linked Lists", "Floyd's cycle detection"],
+      [142, "Linked List Cycle II", "linked-list-cycle-ii", "Medium", "Linked Lists", "Floyd's cycle,math"],
+      [143, "Reorder List", "reorder-list", "Medium", "Linked Lists", "linked list,fast-slow,reverse"],
+      [146, "LRU Cache", "lru-cache", "Medium", "Linked Lists", "doubly linked list,hash map,design"],
+      [148, "Sort List", "sort-list", "Medium", "Linked Lists", "merge sort,fast-slow pointer"],
+      [160, "Intersection of Two Linked Lists", "intersection-of-two-linked-lists", "Easy", "Linked Lists", "two pointers"],
+      [206, "Reverse Linked List", "reverse-linked-list", "Easy", "Linked Lists", "iterative,recursive"],
+      [328, "Odd Even Linked List", "odd-even-linked-list", "Medium", "Linked Lists", "linked list,in-place"],
+      [445, "Add Two Numbers II", "add-two-numbers-ii", "Medium", "Linked Lists", "stack,math"],
+      [460, "LFU Cache", "lfu-cache", "Hard", "Linked Lists", "doubly linked list,hash map,design"],
+
+      // ========== STACKS & MONOTONIC STACK (18) ==========
+      [20, "Valid Parentheses", "valid-parentheses", "Easy", "Stacks & Queues", "stack,string"],
+      [22, "Generate Parentheses", "generate-parentheses", "Medium", "Stacks & Queues", "backtracking,dp"],
+      [71, "Simplify Path", "simplify-path", "Medium", "Stacks & Queues", "stack,string"],
+      [150, "Evaluate Reverse Polish Notation", "evaluate-reverse-polish-notation", "Medium", "Stacks & Queues", "stack,math"],
+      [155, "Min Stack", "min-stack", "Medium", "Stacks & Queues", "stack,design"],
+      [224, "Basic Calculator", "basic-calculator", "Hard", "Stacks & Queues", "stack,recursion"],
+      [227, "Basic Calculator II", "basic-calculator-ii", "Medium", "Stacks & Queues", "stack,string parsing"],
+      [316, "Remove Duplicate Letters", "remove-duplicate-letters", "Medium", "Stacks & Queues", "monotonic stack,greedy"],
+      [394, "Decode String", "decode-string", "Medium", "Stacks & Queues", "stack,recursion,string"],
+      [402, "Remove K Digits", "remove-k-digits", "Medium", "Stacks & Queues", "monotonic stack,greedy"],
+      [496, "Next Greater Element I", "next-greater-element-i", "Easy", "Stacks & Queues", "monotonic stack,hash map"],
+      [503, "Next Greater Element II", "next-greater-element-ii", "Medium", "Stacks & Queues", "monotonic stack,circular"],
+      [739, "Daily Temperatures", "daily-temperatures", "Medium", "Stacks & Queues", "monotonic stack"],
+      [772, "Basic Calculator III", "basic-calculator-iii", "Hard", "Stacks & Queues", "stack,recursion,parsing"],
+      [853, "Car Fleet", "car-fleet", "Medium", "Stacks & Queues", "monotonic stack,sorting"],
+      [895, "Maximum Frequency Stack", "maximum-frequency-stack", "Hard", "Stacks & Queues", "hash map,stack,design"],
+      [907, "Sum of Subarray Minimums", "sum-of-subarray-minimums", "Medium", "Stacks & Queues", "monotonic stack,dp"],
+      [1209, "Remove All Adjacent Duplicates in String II", "remove-all-adjacent-duplicates-in-string-ii", "Medium", "Stacks & Queues", "stack"],
+
+      // ========== HASH MAPS & SETS (12) ==========
+      [1, "Two Sum", "two-sum", "Easy", "Hash Maps & Sets", "hash map,complement"],
+      [137, "Single Number II", "single-number-ii", "Medium", "Hash Maps & Sets", "bit manipulation,hash map"],
+      [169, "Majority Element", "majority-element", "Easy", "Hash Maps & Sets", "Boyer-Moore voting"],
+      [205, "Isomorphic Strings", "isomorphic-strings", "Easy", "Hash Maps & Sets", "hash map,bijection"],
+      [290, "Word Pattern", "word-pattern", "Easy", "Hash Maps & Sets", "hash map,bijection"],
+      [347, "Top K Frequent Elements", "top-k-frequent-elements", "Medium", "Hash Maps & Sets", "bucket sort,heap,hash map"],
+      [387, "First Unique Character in a String", "first-unique-character-in-a-string", "Easy", "Hash Maps & Sets", "hash map,freq count"],
+      [451, "Sort Characters By Frequency", "sort-characters-by-frequency", "Medium", "Hash Maps & Sets", "bucket sort,hash map"],
+      [554, "Brick Wall", "brick-wall", "Medium", "Hash Maps & Sets", "hash map,prefix sum"],
+      [692, "Top K Frequent Words", "top-k-frequent-words", "Medium", "Hash Maps & Sets", "heap,hash map,bucket sort"],
+      [791, "Custom Sort String", "custom-sort-string", "Medium", "Hash Maps & Sets", "hash map,sorting"],
+      [2349, "Design a Number Container System", "design-a-number-container-system", "Medium", "Hash Maps & Sets", "hash map,sorted set,design"],
+
+      // ========== BINARY TREES (30) ==========
+      [94, "Binary Tree Inorder Traversal", "binary-tree-inorder-traversal", "Easy", "Binary Trees", "DFS,iterative,Morris"],
+      [98, "Validate Binary Search Tree", "validate-binary-search-tree", "Medium", "Binary Trees", "DFS,in-order,bounds"],
+      [100, "Same Tree", "same-tree", "Easy", "Binary Trees", "DFS,BFS,recursion"],
+      [101, "Symmetric Tree", "symmetric-tree", "Easy", "Binary Trees", "DFS,BFS,recursion"],
+      [102, "Binary Tree Level Order Traversal", "binary-tree-level-order-traversal", "Medium", "Binary Trees", "BFS,queue"],
+      [103, "Binary Tree Zigzag Level Order Traversal", "binary-tree-zigzag-level-order-traversal", "Medium", "Binary Trees", "BFS,deque"],
+      [104, "Maximum Depth of Binary Tree", "maximum-depth-of-binary-tree", "Easy", "Binary Trees", "DFS,BFS,recursion"],
+      [105, "Construct Binary Tree from Preorder and Inorder Traversal", "construct-binary-tree-from-preorder-and-inorder-traversal", "Medium", "Binary Trees", "DFS,hash map,divide & conquer"],
+      [110, "Balanced Binary Tree", "balanced-binary-tree", "Easy", "Binary Trees", "DFS,bottom-up"],
+      [112, "Path Sum", "path-sum", "Easy", "Binary Trees", "DFS,recursion"],
+      [113, "Path Sum II", "path-sum-ii", "Medium", "Binary Trees", "DFS,backtracking"],
+      [114, "Flatten Binary Tree to Linked List", "flatten-binary-tree-to-linked-list", "Medium", "Binary Trees", "DFS,Morris traversal,in-place"],
+      [116, "Populating Next Right Pointers in Each Node", "populating-next-right-pointers-in-each-node", "Medium", "Binary Trees", "BFS,level order,O(1) space"],
+      [124, "Binary Tree Maximum Path Sum", "binary-tree-maximum-path-sum", "Hard", "Binary Trees", "DFS,global max,post-order"],
+      [129, "Sum Root to Leaf Numbers", "sum-root-to-leaf-numbers", "Medium", "Binary Trees", "DFS,path tracking"],
+      [199, "Binary Tree Right Side View", "binary-tree-right-side-view", "Medium", "Binary Trees", "BFS,DFS"],
+      [226, "Invert Binary Tree", "invert-binary-tree", "Easy", "Binary Trees", "DFS,BFS,recursion"],
+      [230, "Kth Smallest Element in a BST", "kth-smallest-element-in-a-bst", "Medium", "Binary Trees", "in-order,Morris,augmented BST"],
+      [236, "Lowest Common Ancestor of a Binary Tree", "lowest-common-ancestor-of-a-binary-tree", "Medium", "Binary Trees", "DFS,recursion,parent pointers"],
+      [297, "Serialize and Deserialize Binary Tree", "serialize-and-deserialize-binary-tree", "Hard", "Binary Trees", "BFS,DFS,design"],
+      [337, "House Robber III", "house-robber-iii", "Medium", "Binary Trees", "DFS,dp on tree"],
+      [366, "Find Leaves of Binary Tree", "find-leaves-of-binary-tree", "Medium", "Binary Trees", "DFS,height grouping"],
+      [437, "Path Sum III", "path-sum-iii", "Medium", "Binary Trees", "DFS,prefix sum,hash map"],
+      [450, "Delete Node in a BST", "delete-node-in-a-bst", "Medium", "Binary Trees", "BST,recursion"],
+      [543, "Diameter of Binary Tree", "diameter-of-binary-tree", "Easy", "Binary Trees", "DFS,post-order,global max"],
+      [572, "Subtree of Another Tree", "subtree-of-another-tree", "Easy", "Binary Trees", "DFS,serialization,KMP"],
+      [662, "Maximum Width of Binary Tree", "maximum-width-of-binary-tree", "Medium", "Binary Trees", "BFS,level order,node indexing"],
+      [863, "All Nodes Distance K in Binary Tree", "all-nodes-distance-k-in-binary-tree", "Medium", "Binary Trees", "BFS,parent map,DFS"],
+      [987, "Vertical Order Traversal of a Binary Tree", "vertical-order-traversal-of-a-binary-tree", "Hard", "Binary Trees", "BFS,DFS,coordinate mapping"],
+      [538, "Convert BST to Greater Tree", "convert-bst-to-greater-tree", "Medium", "Binary Trees", "reverse in-order,DFS"],
+
+      // ========== HEAPS & PRIORITY QUEUES (16) ==========
+      [215, "Kth Largest Element in an Array", "kth-largest-element-in-an-array", "Medium", "Heaps", "quickselect,heap,sorting"],
+      [218, "The Skyline Problem", "the-skyline-problem", "Hard", "Heaps", "heap,sweep line,sorted set"],
+      [253, "Meeting Rooms II", "meeting-rooms-ii", "Medium", "Heaps", "min heap,sorting,sweep line"],
+      [264, "Ugly Number II", "ugly-number-ii", "Medium", "Heaps", "min heap,dp,three pointers"],
+      [295, "Find Median from Data Stream", "find-median-from-data-stream", "Hard", "Heaps", "two heaps,design"],
+      [347, "Top K Frequent Elements", "top-k-frequent-elements", "Medium", "Heaps", "bucket sort,heap,hash map"],
+      [355, "Design Twitter", "design-twitter", "Medium", "Heaps", "heap,linked list,hash map,design"],
+      [373, "Find K Pairs with Smallest Sums", "find-k-pairs-with-smallest-sums", "Medium", "Heaps", "min heap"],
+      [480, "Sliding Window Median", "sliding-window-median", "Hard", "Heaps", "two heaps,sorted container"],
+      [502, "IPO", "ipo", "Hard", "Heaps", "two heaps,greedy,sorting"],
+      [632, "Smallest Range Covering Elements from K Lists", "smallest-range-covering-elements-from-k-lists", "Hard", "Heaps", "min heap,sliding window"],
+      [692, "Top K Frequent Words", "top-k-frequent-words", "Medium", "Heaps", "heap,hash map"],
+      [703, "Kth Largest Element in a Stream", "kth-largest-element-in-a-stream", "Easy", "Heaps", "min heap,design"],
+      [767, "Reorganize String", "reorganize-string", "Medium", "Heaps", "max heap,greedy,counting"],
+      [1353, "Maximum Number of Events That Can Be Attended", "maximum-number-of-events-that-can-be-attended", "Medium", "Heaps", "greedy,min heap,sorting"],
+      [2402, "Meeting Rooms III", "meeting-rooms-iii", "Hard", "Heaps", "two heaps,sorting"],
+
+      // ========== GRAPHS - BFS & DFS (30) ==========
+      [127, "Word Ladder", "word-ladder", "Hard", "Graphs", "BFS,shortest path,string transformation"],
+      [130, "Surrounded Regions", "surrounded-regions", "Medium", "Graphs", "DFS,BFS,union find,boundary"],
+      [133, "Clone Graph", "clone-graph", "Medium", "Graphs", "BFS,DFS,hash map"],
+      [200, "Number of Islands", "number-of-islands", "Medium", "Graphs", "BFS,DFS,union find"],
+      [207, "Course Schedule", "course-schedule", "Medium", "Graphs", "topological sort,DFS,cycle detection"],
+      [208, "Implement Trie (Prefix Tree)", "implement-trie-prefix-tree", "Medium", "Graphs", "trie,design"],
+      [210, "Course Schedule II", "course-schedule-ii", "Medium", "Graphs", "topological sort,Kahn's,DFS"],
+      [261, "Graph Valid Tree", "graph-valid-tree", "Medium", "Graphs", "union find,BFS,DFS"],
+      [286, "Walls and Gates", "walls-and-gates", "Medium", "Graphs", "multi-source BFS"],
+      [310, "Minimum Height Trees", "minimum-height-trees", "Medium", "Graphs", "topological sort,leaf trimming"],
+      [323, "Number of Connected Components in an Undirected Graph", "number-of-connected-components-in-an-undirected-graph", "Medium", "Graphs", "union find,DFS,BFS"],
+      [399, "Evaluate Division", "evaluate-division", "Medium", "Graphs", "weighted graph,BFS,union find"],
+      [417, "Pacific Atlantic Water Flow", "pacific-atlantic-water-flow", "Medium", "Graphs", "multi-source BFS,DFS"],
+      [490, "The Maze", "the-maze", "Medium", "Graphs", "BFS,DFS,rolling ball"],
+      [505, "The Maze II", "the-maze-ii", "Medium", "Graphs", "Dijkstra,BFS,shortest path"],
+      [547, "Number of Provinces", "number-of-provinces", "Medium", "Graphs", "union find,DFS,BFS"],
+      [695, "Max Area of Island", "max-area-of-island", "Medium", "Graphs", "DFS,BFS,union find"],
+      [721, "Accounts Merge", "accounts-merge", "Medium", "Graphs", "union find,DFS,BFS"],
+      [733, "Flood Fill", "flood-fill", "Easy", "Graphs", "DFS,BFS,recursion"],
+      [785, "Is Graph Bipartite?", "is-graph-bipartite", "Medium", "Graphs", "BFS,DFS,2-coloring"],
+      [797, "All Paths From Source to Target", "all-paths-from-source-to-target", "Medium", "Graphs", "DFS,backtracking,DAG"],
+      [827, "Making A Large Island", "making-a-large-island", "Hard", "Graphs", "DFS,union find,island merging"],
+      [841, "Keys and Rooms", "keys-and-rooms", "Medium", "Graphs", "DFS,BFS"],
+      [994, "Rotting Oranges", "rotting-oranges", "Medium", "Graphs", "multi-source BFS"],
+      [1091, "Shortest Path in Binary Matrix", "shortest-path-in-binary-matrix", "Medium", "Graphs", "BFS,shortest path"],
+      [1197, "Minimum Knight Moves", "minimum-knight-moves", "Medium", "Graphs", "BFS,math symmetry"],
+      [1254, "Number of Closed Islands", "number-of-closed-islands", "Medium", "Graphs", "DFS,BFS,boundary flood fill"],
+      [1376, "Time Needed to Inform All Employees", "time-needed-to-inform-all-employees", "Medium", "Graphs", "DFS,BFS,tree"],
+      [1466, "Reorder Routes to Make All Paths Lead to the City Zero", "reorder-routes-to-make-all-paths-lead-to-the-city-zero", "Medium", "Graphs", "BFS,DFS,directed graph"],
+      [1971, "Find if Path Exists in Graph", "find-if-path-exists-in-graph", "Easy", "Graphs", "BFS,DFS,union find"],
+
+      // ========== GRAPHS - ADVANCED (16) ==========
+      [269, "Alien Dictionary", "alien-dictionary", "Hard", "Graphs - Advanced", "topological sort,DFS,cycle detection"],
+      [329, "Longest Increasing Path in a Matrix", "longest-increasing-path-in-a-matrix", "Hard", "Graphs - Advanced", "DFS,memoization,topological sort"],
+      [332, "Reconstruct Itinerary", "reconstruct-itinerary", "Hard", "Graphs - Advanced", "Hierholzer's,Eulerian path,DFS"],
+      [684, "Redundant Connection", "redundant-connection", "Medium", "Graphs - Advanced", "union find,DFS,cycle detection"],
+      [685, "Redundant Connection II", "redundant-connection-ii", "Hard", "Graphs - Advanced", "union find,in-degree analysis"],
+      [743, "Network Delay Time", "network-delay-time", "Medium", "Graphs - Advanced", "Dijkstra,Bellman-Ford,Floyd-Warshall"],
+      [787, "Cheapest Flights Within K Stops", "cheapest-flights-within-k-stops", "Medium", "Graphs - Advanced", "Bellman-Ford,modified Dijkstra,DP"],
+      [802, "Find Eventual Safe States", "find-eventual-safe-states", "Medium", "Graphs - Advanced", "DFS,cycle detection,topological sort"],
+      [847, "Shortest Path Visiting All Nodes", "shortest-path-visiting-all-nodes", "Hard", "Graphs - Advanced", "BFS,bitmask DP"],
+      [1162, "As Far from Land as Possible", "as-far-from-land-as-possible", "Medium", "Graphs - Advanced", "multi-source BFS"],
+      [1334, "Find the City With the Smallest Number of Neighbors at a Threshold Distance", "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance", "Medium", "Graphs - Advanced", "Floyd-Warshall,Dijkstra"],
+      [1345, "Jump Game IV", "jump-game-iv", "Hard", "Graphs - Advanced", "BFS,graph construction"],
+      [1489, "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree", "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree", "Hard", "Graphs - Advanced", "Kruskal,MST,union find"],
+      [1584, "Min Cost to Connect All Points", "min-cost-to-connect-all-points", "Medium", "Graphs - Advanced", "Prim's,Kruskal's,MST"],
+      [1631, "Path With Minimum Effort", "path-with-minimum-effort", "Medium", "Graphs - Advanced", "Dijkstra,binary search,union find"],
+      [2092, "Find All People With Secret", "find-all-people-with-secret", "Hard", "Graphs - Advanced", "union find,BFS,sorting"],
+
+      // ========== DYNAMIC PROGRAMMING - 1D (24) ==========
+      [70, "Climbing Stairs", "climbing-stairs", "Easy", "DP - 1D", "dp,fibonacci,memoization"],
+      [139, "Word Break", "word-break", "Medium", "DP - 1D", "dp,BFS,trie"],
+      [140, "Word Break II", "word-break-ii", "Hard", "DP - 1D", "backtracking,dp,memoization"],
+      [198, "House Robber", "house-robber", "Medium", "DP - 1D", "dp,linear scan"],
+      [213, "House Robber II", "house-robber-ii", "Medium", "DP - 1D", "dp,circular,two pass"],
+      [256, "Paint House", "paint-house", "Medium", "DP - 1D", "dp,linear"],
+      [279, "Perfect Squares", "perfect-squares", "Medium", "DP - 1D", "dp,BFS,math (Lagrange)"],
+      [300, "Longest Increasing Subsequence", "longest-increasing-subsequence", "Medium", "DP - 1D", "dp,binary search,patience sort"],
+      [322, "Coin Change", "coin-change", "Medium", "DP - 1D", "dp,BFS,unbounded knapsack"],
+      [338, "Counting Bits", "counting-bits", "Easy", "DP - 1D", "dp,bit manipulation"],
+      [377, "Combination Sum IV", "combination-sum-iv", "Medium", "DP - 1D", "dp,order matters,permutation"],
+      [416, "Partition Equal Subset Sum", "partition-equal-subset-sum", "Medium", "DP - 1D", "0/1 knapsack,bitset"],
+      [518, "Coin Change II", "coin-change-ii", "Medium", "DP - 1D", "unbounded knapsack,dp"],
+      [583, "Delete Operation for Two Strings", "delete-operation-for-two-strings", "Medium", "DP - 1D", "LCS,dp"],
+      [673, "Number of Longest Increasing Subsequences", "number-of-longest-increasing-subsequences", "Medium", "DP - 1D", "dp,count array"],
+      [714, "Best Time to Buy and Sell Stock with Transaction Fee", "best-time-to-buy-and-sell-stock-with-transaction-fee", "Medium", "DP - 1D", "dp,state machine"],
+      [740, "Delete and Earn", "delete-and-earn", "Medium", "DP - 1D", "dp,house robber variant"],
+      [746, "Min Cost Climbing Stairs", "min-cost-climbing-stairs", "Easy", "DP - 1D", "dp"],
+      [983, "Minimum Cost For Tickets", "minimum-cost-for-tickets", "Medium", "DP - 1D", "dp,travel days"],
+      [1143, "Longest Common Subsequence", "longest-common-subsequence", "Medium", "DP - 1D", "dp,2D LCS"],
+      [1048, "Longest String Chain", "longest-string-chain", "Medium", "DP - 1D", "dp,sorting,hash map"],
+      [509, "Fibonacci Number", "fibonacci-number", "Easy", "DP - 1D", "dp,memoization,matrix exp"],
+      [376, "Wiggle Subsequence", "wiggle-subsequence", "Medium", "DP - 1D", "greedy,dp"],
+      [2140, "Solving Questions With Brainpower", "solving-questions-with-brainpower", "Medium", "DP - 1D", "dp,reverse iteration"],
+
+      // ========== DYNAMIC PROGRAMMING - 2D & GRID (20) ==========
+      [62, "Unique Paths", "unique-paths", "Medium", "DP - 2D & Grid", "dp,combinatorics,math"],
+      [63, "Unique Paths II", "unique-paths-ii", "Medium", "DP - 2D & Grid", "dp,obstacles,grid"],
+      [64, "Minimum Path Sum", "minimum-path-sum", "Medium", "DP - 2D & Grid", "dp,grid,in-place"],
+      [72, "Edit Distance", "edit-distance", "Medium", "DP - 2D & Grid", "dp,string,LCS"],
+      [115, "Distinct Subsequences", "distinct-subsequences", "Hard", "DP - 2D & Grid", "dp,string,count"],
+      [120, "Triangle", "triangle", "Medium", "DP - 2D & Grid", "dp,bottom-up,in-place"],
+      [174, "Dungeon Game", "dungeon-game", "Hard", "DP - 2D & Grid", "dp,reverse grid,min health"],
+      [221, "Maximal Square", "maximal-square", "Medium", "DP - 2D & Grid", "dp,matrix,prefix square"],
+      [312, "Burst Balloons", "burst-balloons", "Hard", "DP - 2D & Grid", "dp,interval,divide & conquer"],
+      [329, "Longest Increasing Path in a Matrix", "longest-increasing-path-in-a-matrix", "Hard", "DP - 2D & Grid", "dp,memoization,DFS"],
+      [403, "Frog Jump", "frog-jump", "Hard", "DP - 2D & Grid", "dp,hash map,BFS"],
+      [464, "Can I Win", "can-i-win", "Medium", "DP - 2D & Grid", "bitmask dp,game theory,memoization"],
+      [516, "Longest Palindromic Subsequence", "longest-palindromic-subsequence", "Medium", "DP - 2D & Grid", "dp,string,LCS"],
+      [688, "Knight Probability in Chessboard", "knight-probability-in-chessboard", "Medium", "DP - 2D & Grid", "dp,probability,memoization"],
+      [741, "Cherry Pickup", "cherry-pickup", "Hard", "DP - 2D & Grid", "3D dp,two paths simultaneously"],
+      [935, "Knight Dialer", "knight-dialer", "Medium", "DP - 2D & Grid", "dp,graph,matrix exponentiation"],
+      [1130, "Minimum Cost Tree From Leaf Values", "minimum-cost-tree-from-leaf-values", "Medium", "DP - 2D & Grid", "dp,interval,monotonic stack"],
+      [1277, "Count Square Submatrices with All Ones", "count-square-submatrices-with-all-ones", "Medium", "DP - 2D & Grid", "dp,matrix,prefix sum"],
+      [787, "Cheapest Flights Within K Stops", "cheapest-flights-within-k-stops", "Medium", "DP - 2D & Grid", "dp,Bellman-Ford,BFS"],
+      [1314, "Matrix Block Sum", "matrix-block-sum", "Medium", "DP - 2D & Grid", "2D prefix sum"],
+
+      // ========== DP - ADVANCED (18) ==========
+      [10, "Regular Expression Matching", "regular-expression-matching", "Hard", "DP - Advanced", "dp,recursion,pattern matching"],
+      [44, "Wildcard Matching", "wildcard-matching", "Hard", "DP - Advanced", "dp,two pointers,greedy"],
+      [87, "Scramble String", "scramble-string", "Hard", "DP - Advanced", "3D dp,recursion,memoization"],
+      [97, "Interleaving String", "interleaving-string", "Medium", "DP - Advanced", "dp,BFS,2D"],
+      [123, "Best Time to Buy and Sell Stock III", "best-time-to-buy-and-sell-stock-iii", "Hard", "DP - Advanced", "dp,state machine,at most 2 transactions"],
+      [188, "Best Time to Buy and Sell Stock IV", "best-time-to-buy-and-sell-stock-iv", "Hard", "DP - Advanced", "dp,state machine,at most k transactions"],
+      [309, "Best Time to Buy and Sell Stock with Cooldown", "best-time-to-buy-and-sell-stock-with-cooldown", "Medium", "DP - Advanced", "dp,state machine"],
+      [354, "Russian Doll Envelopes", "russian-doll-envelopes", "Hard", "DP - Advanced", "dp,LIS,binary search"],
+      [368, "Largest Divisible Subset", "largest-divisible-subset", "Medium", "DP - Advanced", "dp,LIS variant,math"],
+      [446, "Arithmetic Slices II - Subsequence", "arithmetic-slices-ii-subsequence", "Hard", "DP - Advanced", "dp,hash map,difference"],
+      [514, "Freedom Trail", "freedom-trail", "Hard", "DP - Advanced", "dp,BFS,string"],
+      [552, "Student Attendance Record II", "student-attendance-record-ii", "Hard", "DP - Advanced", "dp,state machine,counting"],
+      [689, "Maximum Sum of 3 Non-Overlapping Subarrays", "maximum-sum-of-3-non-overlapping-subarrays", "Hard", "DP - Advanced", "dp,prefix sum,sliding window"],
+      [871, "Minimum Number of Refueling Stops", "minimum-number-of-refueling-stops", "Hard", "DP - Advanced", "greedy,dp,max heap"],
+      [1048, "Longest String Chain", "longest-string-chain", "Medium", "DP - Advanced", "dp,sorting,hash map"],
+      [1235, "Maximum Profit in Job Scheduling", "maximum-profit-in-job-scheduling", "Hard", "DP - Advanced", "dp,binary search,sorting,events"],
+      [1458, "Max Dot Product of Two Subsequences", "max-dot-product-of-two-subsequences", "Hard", "DP - Advanced", "dp,2D,subsequence"],
+      [1531, "String Compression II", "string-compression-ii", "Hard", "DP - Advanced", "dp,memoization,string"],
+
+      // ========== BACKTRACKING (18) ==========
+      [17, "Letter Combinations of a Phone Number", "letter-combinations-of-a-phone-number", "Medium", "Backtracking", "backtracking,DFS,recursion"],
+      [37, "Sudoku Solver", "sudoku-solver", "Hard", "Backtracking", "backtracking,constraint propagation"],
+      [39, "Combination Sum", "combination-sum", "Medium", "Backtracking", "backtracking,pruning"],
+      [40, "Combination Sum II", "combination-sum-ii", "Medium", "Backtracking", "backtracking,duplicates,sorting"],
+      [46, "Permutations", "permutations", "Medium", "Backtracking", "backtracking,swap"],
+      [47, "Permutations II", "permutations-ii", "Medium", "Backtracking", "backtracking,duplicates,sorting"],
+      [51, "N-Queens", "n-queens", "Hard", "Backtracking", "backtracking,constraint,column/diag sets"],
+      [77, "Combinations", "combinations", "Medium", "Backtracking", "backtracking,pruning"],
+      [78, "Subsets", "subsets", "Medium", "Backtracking", "backtracking,bitmask,iterative"],
+      [79, "Word Search", "word-search", "Medium", "Backtracking", "backtracking,DFS,grid"],
+      [90, "Subsets II", "subsets-ii", "Medium", "Backtracking", "backtracking,sorting,duplicates"],
+      [126, "Word Ladder II", "word-ladder-ii", "Hard", "Backtracking", "BFS+backtracking,shortest path reconstruction"],
+      [131, "Palindrome Partitioning", "palindrome-partitioning", "Medium", "Backtracking", "backtracking,dp,palindrome check"],
+      [212, "Word Search II", "word-search-ii", "Hard", "Backtracking", "trie,DFS,backtracking"],
+      [216, "Combination Sum III", "combination-sum-iii", "Medium", "Backtracking", "backtracking,pruning"],
+      [301, "Remove Invalid Parentheses", "remove-invalid-parentheses", "Hard", "Backtracking", "BFS,backtracking,pruning"],
+      [491, "Non-decreasing Subsequences", "non-decreasing-subsequences", "Medium", "Backtracking", "backtracking,hash set,pruning"],
+      [784, "Letter Case Permutation", "letter-case-permutation", "Medium", "Backtracking", "backtracking,BFS,bit manipulation"],
+
+      // ========== GREEDY (16) ==========
+      [45, "Jump Game II", "jump-game-ii", "Medium", "Greedy", "greedy,bfs,farthest reach"],
+      [55, "Jump Game", "jump-game", "Medium", "Greedy", "greedy,max reach"],
+      [122, "Best Time to Buy and Sell Stock II", "best-time-to-buy-and-sell-stock-ii", "Medium", "Greedy", "greedy,peak-valley"],
+      [134, "Gas Station", "gas-station", "Medium", "Greedy", "greedy,circular scan"],
+      [135, "Candy", "candy", "Hard", "Greedy", "greedy,two pass"],
+      [253, "Meeting Rooms II", "meeting-rooms-ii", "Medium", "Greedy", "greedy,min heap,sweep line"],
+      [330, "Patching Array", "patching-array", "Hard", "Greedy", "greedy,reach extension"],
+      [402, "Remove K Digits", "remove-k-digits", "Medium", "Greedy", "greedy,monotonic stack"],
+      [406, "Queue Reconstruction by Height", "queue-reconstruction-by-height", "Medium", "Greedy", "greedy,insertion sort,sorting"],
+      [435, "Non-overlapping Intervals", "non-overlapping-intervals", "Medium", "Greedy", "greedy,interval scheduling,sorting"],
+      [452, "Minimum Number of Arrows to Burst Balloons", "minimum-number-of-arrows-to-burst-balloons", "Medium", "Greedy", "greedy,interval,sorting"],
+      [621, "Task Scheduler", "task-scheduler", "Medium", "Greedy", "greedy,frequency count,math"],
+      [763, "Partition Labels", "partition-labels", "Medium", "Greedy", "greedy,last occurrence"],
+      [1029, "Two City Scheduling", "two-city-scheduling", "Medium", "Greedy", "greedy,sorting,cost difference"],
+      [1326, "Minimum Number of Taps to Open to Water a Garden", "minimum-number-of-taps-to-open-to-water-a-garden", "Hard", "Greedy", "greedy,interval,dp,jump game"],
+      [2136, "Earliest Possible Day of Full Bloom", "earliest-possible-day-of-full-bloom", "Hard", "Greedy", "greedy,sorting by grow time"],
+
+      // ========== TRIES (10) ==========
+      [208, "Implement Trie (Prefix Tree)", "implement-trie-prefix-tree", "Medium", "Tries", "trie,design"],
+      [211, "Design Add and Search Words Data Structure", "design-add-and-search-words-data-structure", "Medium", "Tries", "trie,DFS,wildcard"],
+      [212, "Word Search II", "word-search-ii", "Hard", "Tries", "trie,DFS,backtracking"],
+      [336, "Palindrome Pairs", "palindrome-pairs", "Hard", "Tries", "trie,hash map,string palindrome"],
+      [421, "Maximum XOR of Two Numbers in an Array", "maximum-xor-of-two-numbers-in-an-array", "Medium", "Tries", "trie,bit manipulation"],
+      [472, "Concatenated Words", "concatenated-words", "Hard", "Tries", "trie,dp,DFS"],
+      [588, "Design In-Memory File System", "design-in-memory-file-system", "Hard", "Tries", "trie,hash map,design"],
+      [642, "Design Search Autocomplete System", "design-search-autocomplete-system", "Hard", "Tries", "trie,heap,string,design"],
+      [648, "Replace Words", "replace-words", "Medium", "Tries", "trie,prefix,hash set"],
+      [745, "Prefix and Suffix Search", "prefix-and-suffix-search", "Hard", "Tries", "trie,suffix wrapping,hash map"],
+
+      // ========== UNION FIND (10) ==========
+      [128, "Longest Consecutive Sequence", "longest-consecutive-sequence", "Medium", "Union Find", "union find,hash set"],
+      [200, "Number of Islands", "number-of-islands", "Medium", "Union Find", "union find,BFS,DFS"],
+      [261, "Graph Valid Tree", "graph-valid-tree", "Medium", "Union Find", "union find,cycle detection"],
+      [305, "Number of Islands II", "number-of-islands-ii", "Hard", "Union Find", "union find,online query"],
+      [323, "Number of Connected Components in an Undirected Graph", "number-of-connected-components-in-an-undirected-graph", "Medium", "Union Find", "union find,DFS,BFS"],
+      [399, "Evaluate Division", "evaluate-division", "Medium", "Union Find", "weighted union find,BFS"],
+      [547, "Number of Provinces", "number-of-provinces", "Medium", "Union Find", "union find,DFS"],
+      [684, "Redundant Connection", "redundant-connection", "Medium", "Union Find", "union find,cycle detection"],
+      [721, "Accounts Merge", "accounts-merge", "Medium", "Union Find", "union find,DFS,BFS"],
+      [1202, "Smallest String With Swaps", "smallest-string-with-swaps", "Medium", "Union Find", "union find,sorting,grouping"],
+
+      // ========== BIT MANIPULATION (10) ==========
+      [78, "Subsets", "subsets", "Medium", "Bit Manipulation", "bitmask,iteration"],
+      [136, "Single Number", "single-number", "Easy", "Bit Manipulation", "XOR"],
+      [190, "Reverse Bits", "reverse-bits", "Easy", "Bit Manipulation", "bit reversal,divide & conquer"],
+      [191, "Number of 1 Bits", "number-of-1-bits", "Easy", "Bit Manipulation", "Brian Kernighan,popcount"],
+      [201, "Bitwise AND of Numbers Range", "bitwise-and-of-numbers-range", "Medium", "Bit Manipulation", "common prefix,right shift"],
+      [260, "Single Number III", "single-number-iii", "Medium", "Bit Manipulation", "XOR,least significant bit"],
+      [338, "Counting Bits", "counting-bits", "Easy", "Bit Manipulation", "dp,Brian Kernighan"],
+      [371, "Sum of Two Integers", "sum-of-two-integers", "Medium", "Bit Manipulation", "XOR,carry,bit addition"],
+      [421, "Maximum XOR of Two Numbers in an Array", "maximum-xor-of-two-numbers-in-an-array", "Medium", "Bit Manipulation", "trie,greedy bit masking"],
+      [477, "Total Hamming Distance", "total-hamming-distance", "Medium", "Bit Manipulation", "bit counting,O(32n)"],
+
+      // ========== MATH & NUMBER THEORY (8) ==========
+      [7, "Reverse Integer", "reverse-integer", "Medium", "Math", "overflow check,math"],
+      [9, "Palindrome Number", "palindrome-number", "Easy", "Math", "reverse half,math"],
+      [29, "Divide Two Integers", "divide-two-integers", "Medium", "Math", "bit shift,long division"],
+      [50, "Pow(x, n)", "powx-n", "Medium", "Math", "fast exponentiation,recursion"],
+      [166, "Fraction to Recurring Decimal", "fraction-to-recurring-decimal", "Medium", "Math", "hash map,long division,remainder"],
+      [204, "Count Primes", "count-primes", "Medium", "Math", "Sieve of Eratosthenes"],
+      [233, "Number of Digit One", "number-of-digit-one", "Hard", "Math", "digit dp,math formula"],
+      [268, "Missing Number", "missing-number", "Easy", "Math", "sum formula,XOR,binary search"],
+
+      // ========== DESIGN & DATA STRUCTURES (13) ==========
+      [146, "LRU Cache", "lru-cache", "Medium", "Design", "doubly linked list,hash map"],
+      [155, "Min Stack", "min-stack", "Medium", "Design", "stack,auxiliary min stack"],
+      [173, "Binary Search Tree Iterator", "binary-search-tree-iterator", "Medium", "Design", "stack,in-order simulation"],
+      [211, "Design Add and Search Words Data Structure", "design-add-and-search-words-data-structure", "Medium", "Design", "trie,DFS"],
+      [295, "Find Median from Data Stream", "find-median-from-data-stream", "Hard", "Design", "two heaps,sorted list"],
+      [297, "Serialize and Deserialize Binary Tree", "serialize-and-deserialize-binary-tree", "Hard", "Design", "BFS,DFS,string encoding"],
+      [341, "Flatten Nested List Iterator", "flatten-nested-list-iterator", "Medium", "Design", "stack,iterator,DFS"],
+      [355, "Design Twitter", "design-twitter", "Medium", "Design", "heap,hash map,linked list"],
+      [380, "Insert Delete GetRandom O(1)", "insert-delete-getrandom-o1", "Medium", "Design", "hash map,array,swap"],
+      [460, "LFU Cache", "lfu-cache", "Hard", "Design", "doubly linked list,hash map,freq map"],
+      [528, "Random Pick with Weight", "random-pick-with-weight", "Medium", "Design", "prefix sum,binary search,reservoir sampling"],
+      [642, "Design Search Autocomplete System", "design-search-autocomplete-system", "Hard", "Design", "trie,heap,hash map"],
+      [895, "Maximum Frequency Stack", "maximum-frequency-stack", "Hard", "Design", "hash map,stack grouping"],
+
+    ];
+
+    // Deduplicate by slug
+    const seen = new Set();
+    const uniqueProblems = PROBLEMS.filter(p => {
+      const key = p[0] + '-' + p[2];
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    // State
+    let solved = new Set();
+    let currentDiff = 'All';
+    let showSolvedOnly = false;
+
+    // Compute counts
+    function getCounts() {
+      let med = 0, hard = 0, easy = 0;
+      uniqueProblems.forEach(p => {
+        if (p[3] === 'Medium') med++;
+        else if (p[3] === 'Hard') hard++;
+        else easy++;
+      });
+      return { med, hard, easy, total: uniqueProblems.length };
+    }
+
+    function updateStats() {
+      const c = getCounts();
+      document.getElementById('totalCount').textContent = c.total;
+      document.getElementById('medCount').textContent = c.med;
+      document.getElementById('hardCount').textContent = c.hard;
+      document.getElementById('solvedCount').textContent = solved.size;
+      const pct = Math.round((solved.size / c.total) * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').textContent = `${solved.size} / ${c.total} (${pct}%)`;
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress?')) {
+        solved.clear();
+        document.querySelectorAll('.check-btn').forEach(btn => btn.classList.remove('checked'));
+        document.querySelectorAll('tbody tr').forEach(tr => tr.classList.remove('solved'));
+        updateStats();
+      }
+    }
+
+    // Toggle Tips
+    function toggleTips() {
+      const btn = document.getElementById('tipsBtn');
+      const content = document.getElementById('tipsContent');
+      btn.classList.toggle('open');
+      content.classList.toggle('open');
+    }
+
+    // Diff filter
+    let activeDiff = 'All';
+    function setDiff(btn, diff) {
+      activeDiff = diff;
+      document.querySelectorAll('.filter-btn[data-diff]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    function toggleSolvedFilter() {
+      showSolvedOnly = !showSolvedOnly;
+      const btn = document.getElementById('solvedFilterBtn');
+      if (showSolvedOnly) {
+        btn.classList.add('active');
+        btn.textContent = '✓ Showing Solved Only';
+      } else {
+        btn.classList.remove('active');
+        btn.textContent = 'Show Solved Only';
+      }
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const topicFilter = document.getElementById('topicFilter').value;
+
+      let visibleCount = 0;
+
+      document.querySelectorAll('.prob-row').forEach(row => {
+        const title = row.dataset.title;
+        const diff = row.dataset.diff;
+        const topic = row.dataset.topic;
+        const id = row.dataset.id;
+
+        let show = true;
+        if (activeDiff !== 'All' && diff !== activeDiff) show = false;
+        if (topicFilter !== 'All' && topic !== topicFilter) show = false;
+        if (search && !title.includes(search) && !topic.toLowerCase().includes(search)) show = false;
+        if (showSolvedOnly && !solved.has(id)) show = false;
+
+        row.classList.toggle('hidden', !show);
+        if (show) visibleCount++;
+      });
+
+      // Show/hide empty states and sections
+      document.querySelectorAll('.topic-section').forEach(section => {
+        const rows = section.querySelectorAll('.prob-row:not(.hidden)');
+        section.style.display = rows.length === 0 ? 'none' : '';
+      });
+    }
+
+    // Build topic options
+    function buildTopicFilter() {
+      const topics = [...new Set(uniqueProblems.map(p => p[4]))].sort();
+      const sel = document.getElementById('topicFilter');
+      topics.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t; opt.textContent = t;
+        sel.appendChild(opt);
+      });
+    }
+
+    // Group by topic
+    function groupByTopic() {
+      const groups = {};
+      uniqueProblems.forEach(p => {
+        if (!groups[p[4]]) groups[p[4]] = [];
+        groups[p[4]].push(p);
+      });
+      return groups;
+    }
+
+    const TOPIC_ICONS = {
+      'Arrays & Strings': '🔢',
+      'Two Pointers': '👉',
+      'Sliding Window': '🪟',
+      'Binary Search': '🔍',
+      'Linked Lists': '🔗',
+      'Stacks & Queues': '📚',
+      'Hash Maps & Sets': '#️⃣',
+      'Binary Trees': '🌳',
+      'Heaps': '⛰️',
+      'Graphs': '🕸️',
+      'Graphs - Advanced': '🗺️',
+      'DP - 1D': '💎',
+      'DP - 2D & Grid': '🎯',
+      'DP - Advanced': '🚀',
+      'Backtracking': '🔄',
+      'Greedy': '⚡',
+      'Tries': '🌿',
+      'Union Find': '🔀',
+      'Bit Manipulation': '💻',
+      'Math': '🧮',
+      'Design': '🏗️',
+    };
+
+    function buildUI() {
+      const groups = groupByTopic();
+      const main = document.getElementById('mainContent');
+      main.innerHTML = '';
+
+      let sectionNum = 0;
+      Object.entries(groups).forEach(([topic, problems]) => {
+        sectionNum++;
+        const section = document.createElement('div');
+        section.className = 'topic-section';
+        section.id = 'section-' + sectionNum;
+
+        const icon = TOPIC_ICONS[topic] || '📋';
+
+        section.innerHTML = `
+      <div class="topic-header" onclick="toggleSection('section-${sectionNum}')">
+        <span class="topic-icon">${icon}</span>
+        <span class="topic-name">${topic}</span>
+        <div class="topic-meta">
+          <span class="topic-count">${problems.length} problems</span>
+          <span class="topic-progress-mini" id="tp-${sectionNum}">0 done</span>
+        </div>
+        <span class="topic-arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>✓</th>
+              <th style="text-align:left">#</th>
+              <th>Problem</th>
+              <th>Difficulty</th>
+              <th style="min-width:160px">Tags</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-${sectionNum}"></tbody>
+        </table>
+      </div>
+    `;
+        main.appendChild(section);
+
+        const tbody = document.getElementById(`tbody-${sectionNum}`);
+        problems.forEach((p, idx) => {
+          const [num, title, slug, diff, topicName, tags] = p;
+          const id = num + '-' + slug;
+          const tagArr = (tags || '').split(',').filter(Boolean);
+
+          const tr = document.createElement('tr');
+          tr.className = 'prob-row';
+          tr.dataset.title = title.toLowerCase();
+          tr.dataset.diff = diff;
+          tr.dataset.topic = topicName;
+          tr.dataset.id = id;
+          tr.dataset.snum = sectionNum;
+
+          tr.innerHTML = `
+        <td>
+          <button class="check-btn ${solved.has(id) ? 'checked' : ''}" onclick="toggleSolve('${id}', this, '${sectionNum}')"></button>
+        </td>
+        <td class="prob-num">${num}</td>
+        <td>
+          <a class="prob-link" href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">
+            ${title} <span class="ext-icon">↗</span>
+          </a>
+        </td>
+        <td><span class="diff ${diff}">${diff}</span></td>
+        <td><div class="tags">${tagArr.map(t => `<span class="tag">${t.trim()}</span>`).join('')}</div></td>
+      `;
+          if (solved.has(id)) tr.classList.add('solved');
+          tbody.appendChild(tr);
+        });
+      });
+    }
+
+    function updateSectionProgress(snum) {
+      const rows = document.querySelectorAll(`.prob-row[data-snum="${snum}"]`);
+      let done = 0;
+      rows.forEach(r => { if (solved.has(r.dataset.id)) done++; });
+      const el = document.getElementById(`tp-${snum}`);
+      if (el) {
+        el.textContent = done > 0 ? `${done}/${rows.length} done` : '0 done';
+        el.style.color = done === rows.length && rows.length > 0 ? 'var(--g-green)' : '';
+      }
+    }
+
+    function toggleSolve(id, btn, snum) {
+      if (solved.has(id)) {
+        solved.delete(id);
+        btn.classList.remove('checked');
+        btn.closest('tr').classList.remove('solved');
+      } else {
+        solved.add(id);
+        btn.classList.add('checked');
+        btn.closest('tr').classList.add('solved');
+      }
+      updateStats();
+      updateSectionProgress(snum);
+    }
+
+    function toggleSection(id) {
+      document.getElementById(id).classList.toggle('collapsed');
+    }
+
+    // Init
+    buildTopicFilter();
+    buildUI();
+    updateStats();
+
+    // Update section progresses
+    const numSections = document.querySelectorAll('.topic-section').length;
+    for (let i = 1; i <= numSections; i++) updateSectionProgress(i);
+  </script>
+</body>
+
+</html>
