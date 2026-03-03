@@ -1380,8 +1380,8 @@
       return true;
     });
 
-    // State
-    let solved = new Set();
+    // State — load from localStorage
+    let solved = new Set(JSON.parse(localStorage.getItem('lc350_solved') || '[]'));
     let currentDiff = 'All';
     let showSolvedOnly = false;
 
@@ -1407,12 +1407,19 @@
       document.getElementById('progressText').textContent = `${solved.size} / ${c.total} (${pct}%)`;
     }
 
+    function saveProgress() {
+      localStorage.setItem('lc350_solved', JSON.stringify([...solved]));
+    }
+
     function resetProgress() {
       if (confirm('Reset all progress?')) {
         solved.clear();
+        saveProgress();
         document.querySelectorAll('.check-btn').forEach(btn => btn.classList.remove('checked'));
         document.querySelectorAll('tbody tr').forEach(tr => tr.classList.remove('solved'));
         updateStats();
+        const numSections = document.querySelectorAll('.topic-section').length;
+        for (let i = 1; i <= numSections; i++) updateSectionProgress(i);
       }
     }
 
@@ -1615,6 +1622,7 @@
         btn.classList.add('checked');
         btn.closest('tr').classList.add('solved');
       }
+      saveProgress();
       updateStats();
       updateSectionProgress(snum);
     }
