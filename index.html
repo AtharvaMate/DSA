@@ -739,6 +739,66 @@
       white-space: nowrap;
     }
 
+    /* platform badges */
+    .platform-links {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+      text-decoration: none;
+      letter-spacing: .3px;
+      transition: all .2s ease;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .platform-badge:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .platform-badge.gfg {
+      background: rgba(47, 141, 70, 0.15);
+      color: #2f8d46;
+      border-color: rgba(47, 141, 70, 0.3);
+    }
+
+    .platform-badge.cn {
+      background: rgba(255, 102, 51, 0.15);
+      color: #ff6633;
+      border-color: rgba(255, 102, 51, 0.3);
+    }
+
+    .platform-badge.ib {
+      background: rgba(66, 133, 244, 0.15);
+      color: #5b9cf4;
+      border-color: rgba(66, 133, 244, 0.3);
+    }
+
+    .platform-badge.hr {
+      background: rgba(46, 200, 102, 0.15);
+      color: #2ec866;
+      border-color: rgba(46, 200, 102, 0.3);
+    }
+
+    .platform-badge.cf {
+      background: rgba(30, 136, 229, 0.15);
+      color: #1e88e5;
+      border-color: rgba(30, 136, 229, 0.3);
+    }
+
     /* === EMPTY STATE === */
     .empty-state {
       text-align: center;
@@ -1380,6 +1440,228 @@
       return true;
     });
 
+    // =============================================
+    // CROSS-PLATFORM LINKS (only problems verified to exist)
+    // Format: "leetcode-slug": { gfg: "url", cn: "url", ib: "url" }
+    // =============================================
+    const PLATFORM_LINKS = {
+      // Generated Overlaps
+      "median-of-two-sorted-arrays": { cn: "https://www.naukri.com/code360/problems/median-of-two-sorted-arrays_985294", ib: "https://www.interviewbit.com/problems/median-of-array/" },
+      "string-to-integer-atoi": { cn: "https://www.naukri.com/code360/problems/implement-atoi-function_981270" },
+      "3sum-closest": { ib: "https://www.interviewbit.com/problems/3-sum/" },
+      "valid-sudoku": { cn: "https://www.naukri.com/code360/problems/valid-sudoku_795268", ib: "https://www.interviewbit.com/problems/valid-sudoku/" },
+      "jump-game-ii": { cn: "https://www.naukri.com/code360/problems/minimum-jumps_796127", ib: "https://www.interviewbit.com/problems/min-jumps-array/" },
+      "insert-interval": { cn: "https://www.naukri.com/code360/problems/insert-interval_1443525", ib: "https://www.interviewbit.com/problems/merge-intervals/" },
+      "maximal-rectangle": { cn: "https://www.naukri.com/code360/problems/maximum-size-rectangle-sub-matrix-with-all-1s_893017", ib: "https://www.interviewbit.com/problems/max-rectangle-in-binary-matrix/" },
+      "gas-station": { cn: "https://www.naukri.com/code360/problems/gas-station_1743498", ib: "https://www.interviewbit.com/problems/gas-station/" },
+      "candy": { ib: "https://www.interviewbit.com/problems/distribute-candy/" },
+      "rotate-array": { cn: "https://www.naukri.com/code360/problems/rotate-array_1230543" },
+      "increasing-triplet-subsequence": { cn: "https://www.naukri.com/code360/problems/increasing-triplet-subsequence_1229464" },
+      "insert-delete-getrandom-o1": { cn: "https://www.naukri.com/code360/problems/insert-delete-getrandom-o1_1229474" },
+      "palindromic-substrings": { cn: "https://www.naukri.com/code360/problems/palindromic-substrings_891516", ib: "https://www.interviewbit.com/problems/palindromic-substrings/" },
+      "asteroid-collision": { cn: "https://www.naukri.com/code360/problems/asteroid-collision_977232" },
+      "find-the-duplicate-number": { cn: "https://www.naukri.com/code360/problems/find-the-duplicate-number_1112602" },
+      "longest-repeating-character-replacement": { cn: "https://www.naukri.com/code360/problems/longest-repeating-character-replacement_975384" },
+      "permutation-in-string": { cn: "https://www.naukri.com/code360/problems/permutation-in-a-string_1171139" },
+      "find-all-anagrams-in-a-string": { cn: "https://www.naukri.com/code360/problems/find-all-anagrams-in-a-string_1149869" },
+      "split-array-largest-sum": { cn: "https://www.naukri.com/code360/problems/split-array-largest-sum_987255", ib: "https://www.interviewbit.com/problems/painters-partition-problem/" },
+      "random-pick-with-weight": { cn: "https://www.naukri.com/code360/problems/random-pick-with-weight_985383" },
+      "find-k-closest-elements": { cn: "https://www.naukri.com/code360/problems/find-k-closest-elements_1129478" },
+      "capacity-to-ship-packages-within-d-days": { cn: "https://www.naukri.com/code360/problems/capacity-to-ship-packages-within-d-days_1229379" },
+      "remove-duplicates-from-sorted-list-ii": { ib: "https://www.interviewbit.com/problems/remove-duplicates-from-sorted-list-ii/" },
+      "copy-list-with-random-pointer": { cn: "https://www.naukri.com/code360/problems/copy-list-with-random-pointer_873376", ib: "https://www.interviewbit.com/problems/copy-list/" },
+      "odd-even-linked-list": { cn: "https://www.naukri.com/code360/problems/odd-even-linked-list_1171139" },
+      "lfu-cache": { cn: "https://www.naukri.com/code360/problems/lfu-cache_893263" },
+      "generate-parentheses": { cn: "https://www.naukri.com/code360/problems/generate-parentheses_920444", ib: "https://www.interviewbit.com/problems/generate-all-parentheses-ii/" },
+      "simplify-path": { cn: "https://www.naukri.com/code360/problems/simplify-path_985357", ib: "https://www.interviewbit.com/problems/simplify-directory-path/" },
+      "evaluate-reverse-polish-notation": { cn: "https://www.naukri.com/code360/problems/evaluate-reverse-polish-notation_1171168", ib: "https://www.interviewbit.com/problems/evaluate-expression/" },
+      "basic-calculator": { cn: "https://www.naukri.com/code360/problems/basic-calculator_920475" },
+      "remove-k-digits": { cn: "https://www.naukri.com/code360/problems/remove-k-digits_1448898" },
+      "next-greater-element-ii": { cn: "https://www.naukri.com/code360/problems/next-greater-element-ii_1112573" },
+      "car-fleet": { cn: "https://www.naukri.com/code360/problems/car-fleet_1229442" },
+      "maximum-frequency-stack": { cn: "https://www.naukri.com/code360/problems/maximum-frequency-stack_985310" },
+      "sum-of-subarray-minimums": { cn: "https://www.naukri.com/code360/problems/sum-of-subarray-minimums_1442792" },
+      "single-number-ii": { cn: "https://www.naukri.com/code360/problems/single-number-ii_799498", ib: "https://www.interviewbit.com/problems/single-number-ii/" },
+      "isomorphic-strings": { cn: "https://www.naukri.com/code360/problems/isomorphic-strings_1117636" },
+      "sort-characters-by-frequency": { cn: "https://www.naukri.com/code360/problems/sort-characters-by-frequency_1094699" },
+      "top-k-frequent-words": { cn: "https://www.naukri.com/code360/problems/top-k-frequent-words_696450" },
+      "same-tree": { cn: "https://www.naukri.com/code360/problems/same-tree_893063", ib: "https://www.interviewbit.com/problems/identical-binary-trees/" },
+      "path-sum-ii": { cn: "https://www.naukri.com/code360/problems/path-sum-ii_1230547", ib: "https://www.interviewbit.com/problems/root-to-leaf-paths-with-sum/" },
+      "populating-next-right-pointers-in-each-node": { ib: "https://www.interviewbit.com/problems/populate-next-right-pointers-tree/" },
+      "sum-root-to-leaf-numbers": { ib: "https://www.interviewbit.com/problems/sum-root-to-leaf-numbers/" },
+      "delete-node-in-a-bst": { cn: "https://www.naukri.com/code360/problems/delete-node-in-a-bst_920534" },
+      "subtree-of-another-tree": { cn: "https://www.naukri.com/code360/problems/subtree-of-another-tree_893178" },
+      "maximum-width-of-binary-tree": { cn: "https://www.naukri.com/code360/problems/maximum-width-of-binary-tree_920563" },
+      "all-nodes-distance-k-in-binary-tree": { cn: "https://www.naukri.com/code360/problems/all-nodes-distance-k-in-binary-tree_893080" },
+      "ugly-number-ii": { cn: "https://www.naukri.com/code360/problems/ugly-number-ii_985265" },
+      "design-twitter": { cn: "https://www.naukri.com/code360/problems/design-twitter_920519", ib: "https://www.interviewbit.com/problems/design-twitter/" },
+      "find-k-pairs-with-smallest-sums": { ib: "https://www.interviewbit.com/problems/n-max-pair-combinations/" },
+      "top-k-frequent-words": { cn: "https://www.naukri.com/code360/problems/top-k-frequent-words_696450" },
+      "reorganize-string": { cn: "https://www.naukri.com/code360/problems/reorganize-string_985285" },
+      "minimum-height-trees": { cn: "https://www.naukri.com/code360/problems/minimum-height-trees_985310" },
+      "pacific-atlantic-water-flow": { cn: "https://www.naukri.com/code360/problems/pacific-atlantic-water-flow_920524" },
+      "max-area-of-island": { cn: "https://www.naukri.com/code360/problems/max-area-of-island_840701" },
+      "shortest-path-in-binary-matrix": { cn: "https://www.naukri.com/code360/problems/shortest-path-in-binary-matrix_893065" },
+      "alien-dictionary": { cn: "https://www.naukri.com/code360/problems/alien-dictionary_630423" },
+      "longest-increasing-path-in-a-matrix": { cn: "https://www.naukri.com/code360/problems/longest-increasing-path-in-a-matrix_920511" },
+      "reconstruct-itinerary": { cn: "https://www.naukri.com/code360/problems/reconstruct-itinerary_1171201" },
+      "find-eventual-safe-states": { cn: "https://www.naukri.com/code360/problems/find-eventual-safe-states_920542" },
+      "min-cost-to-connect-all-points": { cn: "https://www.naukri.com/code360/problems/min-cost-to-connect-all-points_1229459" },
+      "path-with-minimum-effort": { cn: "https://www.naukri.com/code360/problems/path-with-minimum-effort_985303" },
+      "word-break-ii": { cn: "https://www.naukri.com/code360/problems/word-break-ii_983635", ib: "https://www.interviewbit.com/problems/word-break-ii/" },
+      "house-robber-ii": { cn: "https://www.naukri.com/code360/problems/house-robber-ii_839733" },
+      "paint-house": { cn: "https://www.naukri.com/code360/problems/paint-house_920524", ib: "https://www.interviewbit.com/problems/paint-house/" },
+      "perfect-squares": { cn: "https://www.naukri.com/code360/problems/perfect-squares_893289" },
+      "counting-bits": { cn: "https://www.naukri.com/code360/problems/counting-bits_920545", ib: "https://www.interviewbit.com/problems/count-total-set-bits/" },
+      "combination-sum-iv": { cn: "https://www.naukri.com/code360/problems/combination-sum-iv_786036" },
+      "coin-change-ii": { cn: "https://www.naukri.com/code360/problems/coin-change-ii_787337", ib: "https://www.interviewbit.com/problems/coin-sum-infinite/" },
+      "number-of-longest-increasing-subsequences": { cn: "https://www.naukri.com/code360/problems/number-of-longest-increasing-subsequences_893268" },
+      "delete-and-earn": { cn: "https://www.naukri.com/code360/problems/delete-and-earn_893469" },
+      "wiggle-subsequence": { cn: "https://www.naukri.com/code360/problems/wiggle-subsequence_985280" },
+      "unique-paths-ii": { cn: "https://www.naukri.com/code360/problems/unique-paths-ii_985286", ib: "https://www.interviewbit.com/problems/unique-paths-in-a-grid/" },
+      "minimum-path-sum": { cn: "https://www.naukri.com/code360/problems/minimum-path-sum_985349", ib: "https://www.interviewbit.com/problems/min-sum-path-in-matrix/" },
+      "distinct-subsequences": { cn: "https://www.naukri.com/code360/problems/distinct-subsequences_799338", ib: "https://www.interviewbit.com/problems/distinct-subsequences/" },
+      "triangle": { cn: "https://www.naukri.com/code360/problems/triangle_1229351", ib: "https://www.interviewbit.com/problems/min-sum-path-in-triangle/" },
+      "dungeon-game": { cn: "https://www.naukri.com/code360/problems/dungeon-game_893303", ib: "https://www.interviewbit.com/problems/dungeon-princess/" },
+      "burst-balloons": { cn: "https://www.naukri.com/code360/problems/burst-balloons_985279" },
+      "longest-increasing-path-in-a-matrix": { cn: "https://www.naukri.com/code360/problems/longest-increasing-path-in-a-matrix_920511" },
+      "frog-jump": { cn: "https://www.naukri.com/code360/problems/frog-jump_3621012" },
+      "knight-probability-in-chessboard": { cn: "https://www.naukri.com/code360/problems/knight-probability-in-chessboard_893266" },
+      "cherry-pickup": { cn: "https://www.naukri.com/code360/problems/cherry-pickup_985307" },
+      "count-square-submatrices-with-all-ones": { cn: "https://www.naukri.com/code360/problems/count-square-submatrices-with-all-ones_893285" },
+      "regular-expression-matching": { cn: "https://www.naukri.com/code360/problems/regular-expression-matching_1112617", ib: "https://www.interviewbit.com/problems/regular-expression-match/" },
+      "scramble-string": { cn: "https://www.naukri.com/code360/problems/scramble-string_893301", ib: "https://www.interviewbit.com/problems/scramble-string/" },
+      "interleaving-string": { cn: "https://www.naukri.com/code360/problems/interleaving-string_1062517", ib: "https://www.interviewbit.com/problems/interleaving-strings/" },
+      "best-time-to-buy-and-sell-stock-iii": { cn: "https://www.naukri.com/code360/problems/best-time-to-buy-and-sell-stock-iii_1071030", ib: "https://www.interviewbit.com/problems/best-time-to-buy-and-sell-stocks-iii/" },
+      "best-time-to-buy-and-sell-stock-iv": { cn: "https://www.naukri.com/code360/problems/best-time-to-buy-and-sell-stock-iv_893287" },
+      "best-time-to-buy-and-sell-stock-with-cooldown": { cn: "https://www.naukri.com/code360/problems/best-time-to-buy-and-sell-stock-with-cooldown_985285" },
+      "russian-doll-envelopes": { cn: "https://www.naukri.com/code360/problems/russian-doll-envelopes_985275" },
+      "largest-divisible-subset": { cn: "https://www.naukri.com/code360/problems/largest-divisible-subset_920524" },
+      "maximum-profit-in-job-scheduling": { cn: "https://www.naukri.com/code360/problems/maximum-profit-in-job-scheduling_893280" },
+      "sudoku-solver": { cn: "https://www.naukri.com/code360/problems/sudoku-solver_699919", ib: "https://www.interviewbit.com/problems/sudoku/" },
+      "permutations-ii": { cn: "https://www.naukri.com/code360/problems/permutations-ii_799399", ib: "https://www.interviewbit.com/problems/all-unique-permutations/" },
+      "combinations": { cn: "https://www.naukri.com/code360/problems/combinations_920557", ib: "https://www.interviewbit.com/problems/combinations/" },
+      "subsets-ii": { cn: "https://www.naukri.com/code360/problems/subsets-ii_1171153", ib: "https://www.interviewbit.com/problems/subsets-ii/" },
+      "word-ladder-ii": { cn: "https://www.naukri.com/code360/problems/word-ladder-ii_893012", ib: "https://www.interviewbit.com/problems/word-ladder-ii/" },
+      "word-search-ii": { cn: "https://www.naukri.com/code360/problems/word-search-ii_1171206", ib: "https://www.interviewbit.com/problems/word-search-board/" },
+      "combination-sum-iii": { cn: "https://www.naukri.com/code360/problems/combination-sum-iii_1230515" },
+      "remove-invalid-parentheses": { cn: "https://www.naukri.com/code360/problems/remove-invalid-parentheses_975394" },
+      "letter-case-permutation": { cn: "https://www.naukri.com/code360/problems/letter-case-permutation_983513" },
+      "jump-game-ii": { cn: "https://www.naukri.com/code360/problems/minimum-jumps_796127", ib: "https://www.interviewbit.com/problems/min-jumps-array/" },
+      "best-time-to-buy-and-sell-stock-ii": { cn: "https://www.naukri.com/code360/problems/best-time-to-buy-and-sell-stock-ii_893290", ib: "https://www.interviewbit.com/problems/best-time-to-buy-and-sell-stocks-ii/" },
+      "gas-station": { cn: "https://www.naukri.com/code360/problems/gas-station_1743498", ib: "https://www.interviewbit.com/problems/gas-station/" },
+      "candy": { ib: "https://www.interviewbit.com/problems/distribute-candy/" },
+      "remove-k-digits": { cn: "https://www.naukri.com/code360/problems/remove-k-digits_1448898" },
+      "task-scheduler": { cn: "https://www.naukri.com/code360/problems/task-scheduler_786236" },
+      "word-search-ii": { cn: "https://www.naukri.com/code360/problems/word-search-ii_1171206", ib: "https://www.interviewbit.com/problems/word-search-board/" },
+      "number-of-islands-ii": { cn: "https://www.naukri.com/code360/problems/number-of-islands-ii_985286" },
+      "reverse-bits": { cn: "https://www.naukri.com/code360/problems/reverse-bits_2099", ib: "https://www.interviewbit.com/problems/reverse-bits/" },
+      "number-of-1-bits": { cn: "https://www.naukri.com/code360/problems/number-of-1-bits_920524", ib: "https://www.interviewbit.com/problems/number-of-1-bits/" },
+      "counting-bits": { cn: "https://www.naukri.com/code360/problems/counting-bits_920545", ib: "https://www.interviewbit.com/problems/count-total-set-bits/" },
+      "reverse-integer": { cn: "https://www.naukri.com/code360/problems/reverse-integer_920510", ib: "https://www.interviewbit.com/problems/reverse-integer/" },
+      "divide-two-integers": { cn: "https://www.naukri.com/code360/problems/divide-two-integers_1112584", ib: "https://www.interviewbit.com/problems/divide-integers/" },
+      "powx-n": { cn: "https://www.naukri.com/code360/problems/pow-x-n_920553", ib: "https://www.interviewbit.com/problems/implement-power-function/" },
+      "flatten-nested-list-iterator": { cn: "https://www.naukri.com/code360/problems/flatten-nested-list-iterator_1229477" },
+      "design-twitter": { cn: "https://www.naukri.com/code360/problems/design-twitter_920519", ib: "https://www.interviewbit.com/problems/design-twitter/" },
+      "insert-delete-getrandom-o1": { cn: "https://www.naukri.com/code360/problems/insert-delete-getrandom-o1_1229474" },
+      "lfu-cache": { cn: "https://www.naukri.com/code360/problems/lfu-cache_893263" },
+      "random-pick-with-weight": { cn: "https://www.naukri.com/code360/problems/random-pick-with-weight_985383" },
+      "maximum-frequency-stack": { cn: "https://www.naukri.com/code360/problems/maximum-frequency-stack_985310" },
+      // Arrays & Strings
+      "longest-substring-without-repeating-characters": { gfg: "https://www.geeksforgeeks.org/problems/length-of-the-longest-substring3036/1", cn: "https://www.naukri.com/code360/problems/longest-substring-without-repeating-characters_630418" },
+      "longest-palindromic-substring": { gfg: "https://www.geeksforgeeks.org/problems/longest-palindrome-in-a-string3411/1", cn: "https://www.naukri.com/code360/problems/longest-palindromic-substring_758900" },
+      "container-with-most-water": { gfg: "https://www.geeksforgeeks.org/problems/container-with-most-water0535/1", ib: "https://www.interviewbit.com/problems/container-with-most-water/" },
+      "3sum": { gfg: "https://www.geeksforgeeks.org/problems/triplet-sum-in-array-1587115621/1", ib: "https://www.interviewbit.com/problems/3-sum/" },
+      "remove-duplicates-from-sorted-array": { gfg: "https://www.geeksforgeeks.org/problems/remove-duplicate-elements-from-sorted-array/1", ib: "https://www.interviewbit.com/problems/remove-duplicates-from-sorted-array/" },
+      "next-permutation": { gfg: "https://www.geeksforgeeks.org/problems/next-permutation5226/1", cn: "https://www.naukri.com/code360/problems/next-permutation_893046" },
+      "first-missing-positive": { gfg: "https://www.geeksforgeeks.org/problems/smallest-positive-missing-number-1587115621/1", ib: "https://www.interviewbit.com/problems/first-missing-integer/" },
+      "trapping-rain-water": { gfg: "https://www.geeksforgeeks.org/problems/trapping-rain-water-1587115621/1", cn: "https://www.naukri.com/code360/problems/trapping-rain-water_630519", ib: "https://www.interviewbit.com/problems/rain-water-trapped/" },
+      "rotate-image": { gfg: "https://www.geeksforgeeks.org/problems/rotate-by-90-degree-1587115621/1", ib: "https://www.interviewbit.com/problems/rotate-matrix/" },
+      "group-anagrams": { gfg: "https://www.geeksforgeeks.org/problems/print-anagrams-together/1", ib: "https://www.interviewbit.com/problems/anagrams/" },
+      "maximum-subarray": { gfg: "https://www.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1", cn: "https://www.naukri.com/code360/problems/maximum-subarray-sum_630526" },
+      "spiral-matrix": { gfg: "https://www.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1", ib: "https://www.interviewbit.com/problems/spiral-order-matrix-i/" },
+      "jump-game": { gfg: "https://www.geeksforgeeks.org/problems/jump-game/1", cn: "https://www.naukri.com/code360/problems/jump-game_893178" },
+      "merge-intervals": { gfg: "https://www.geeksforgeeks.org/problems/overlapping-intervals--170633/1", ib: "https://www.interviewbit.com/problems/merge-intervals/" },
+      "set-matrix-zeroes": { gfg: "https://www.geeksforgeeks.org/problems/boolean-matrix-problem-1587115620/1", ib: "https://www.interviewbit.com/problems/set-matrix-zeros/" },
+      "sort-colors": { gfg: "https://www.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1", ib: "https://www.interviewbit.com/problems/sort-by-color/" },
+      "largest-rectangle-in-histogram": { gfg: "https://www.geeksforgeeks.org/problems/maximum-rectangular-area-in-a-histogram-1587115620/1", ib: "https://www.interviewbit.com/problems/largest-rectangle-in-histogram/" },
+      "longest-consecutive-sequence": { gfg: "https://www.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/1", ib: "https://www.interviewbit.com/problems/longest-consecutive-sequence/" },
+      // Two Pointers
+      "merge-sorted-array": { gfg: "https://www.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1", ib: "https://www.interviewbit.com/problems/merge-two-sorted-lists-ii/" },
+      // Binary Search
+      "search-in-rotated-sorted-array": { gfg: "https://www.geeksforgeeks.org/problems/search-in-a-rotated-array4618/1", cn: "https://www.naukri.com/code360/problems/search-in-rotated-sorted-array_630450", ib: "https://www.interviewbit.com/problems/rotated-sorted-array-search/" },
+      "search-a-2d-matrix": { gfg: "https://www.geeksforgeeks.org/problems/search-in-a-matrix17201720/1", ib: "https://www.interviewbit.com/problems/matrix-search/" },
+      "koko-eating-bananas": { cn: "https://www.naukri.com/code360/problems/koko-eating-bananas_920770" },
+      // Linked Lists
+      "add-two-numbers": { gfg: "https://www.geeksforgeeks.org/problems/add-two-numbers-represented-by-linked-lists/1", cn: "https://www.naukri.com/code360/problems/add-two-numbers_1170520", ib: "https://www.interviewbit.com/problems/add-two-numbers-as-lists/" },
+      "remove-nth-node-from-end-of-list": { gfg: "https://www.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1", ib: "https://www.interviewbit.com/problems/remove-nth-node-from-list-end/" },
+      "merge-two-sorted-lists": { gfg: "https://www.geeksforgeeks.org/problems/merge-two-sorted-linked-lists/1", cn: "https://www.naukri.com/code360/problems/merge-two-sorted-linked-lists_800332", ib: "https://www.interviewbit.com/problems/merge-two-sorted-lists/" },
+      "merge-k-sorted-lists": { gfg: "https://www.geeksforgeeks.org/problems/merge-k-sorted-linked-lists/1", ib: "https://www.interviewbit.com/problems/merge-k-sorted-lists/" },
+      "reverse-nodes-in-k-group": { gfg: "https://www.geeksforgeeks.org/problems/reverse-a-linked-list-in-groups-of-given-size/1", ib: "https://www.interviewbit.com/problems/k-reverse-linked-list/" },
+      "linked-list-cycle": { gfg: "https://www.geeksforgeeks.org/problems/detect-loop-in-linked-list/1", cn: "https://www.naukri.com/code360/problems/linked-list-cycle_628974" },
+      "reorder-list": { gfg: "https://www.geeksforgeeks.org/problems/reorder-list/1", ib: "https://www.interviewbit.com/problems/reorder-list/" },
+      "lru-cache": { gfg: "https://www.geeksforgeeks.org/problems/lru-cache/1", ib: "https://www.interviewbit.com/problems/lru-cache/" },
+      "sort-list": { gfg: "https://www.geeksforgeeks.org/problems/sort-a-linked-list/1", ib: "https://www.interviewbit.com/problems/sort-list/" },
+      "intersection-of-two-linked-lists": { gfg: "https://www.geeksforgeeks.org/problems/intersection-point-in-y-shapped-linked-lists/1", ib: "https://www.interviewbit.com/problems/intersection-of-linked-lists/" },
+      "reverse-linked-list": { gfg: "https://www.geeksforgeeks.org/problems/reverse-a-linked-list/1", cn: "https://www.naukri.com/code360/problems/reverse-linked-list_920513", ib: "https://www.interviewbit.com/problems/reverse-linked-list/" },
+      // Stacks & Queues
+      "valid-parentheses": { gfg: "https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1", ib: "https://www.interviewbit.com/problems/balanced-parantheses/" },
+      "min-stack": { gfg: "https://www.geeksforgeeks.org/problems/get-minimum-element-from-stack/1", ib: "https://www.interviewbit.com/problems/min-stack/" },
+      "daily-temperatures": { cn: "https://www.naukri.com/code360/problems/daily-temperatures_759907" },
+      // Hash Maps & Sets
+      "two-sum": { gfg: "https://www.geeksforgeeks.org/problems/key-pair5616/1", cn: "https://www.naukri.com/code360/problems/two-sum_839653", ib: "https://www.interviewbit.com/problems/2-sum/" },
+      "majority-element": { gfg: "https://www.geeksforgeeks.org/problems/majority-element-1587115620/1", cn: "https://www.naukri.com/code360/problems/majority-element_842495", ib: "https://www.interviewbit.com/problems/majority-element/" },
+      "top-k-frequent-elements": { gfg: "https://www.geeksforgeeks.org/problems/top-k-frequent-elements-in-array/1", cn: "https://www.naukri.com/code360/problems/top-k-frequent-elements_891302" },
+      // Binary Trees
+      "binary-tree-inorder-traversal": { gfg: "https://www.geeksforgeeks.org/problems/inorder-traversal/1", cn: "https://www.naukri.com/code360/problems/inorder-traversal_3839474" },
+      "validate-binary-search-tree": { gfg: "https://www.geeksforgeeks.org/problems/check-for-bst/1", ib: "https://www.interviewbit.com/problems/valid-binary-search-tree/" },
+      "symmetric-tree": { gfg: "https://www.geeksforgeeks.org/problems/symmetric-tree/1", ib: "https://www.interviewbit.com/problems/symmetric-binary-tree/" },
+      "binary-tree-level-order-traversal": { gfg: "https://www.geeksforgeeks.org/problems/level-order-traversal/1", ib: "https://www.interviewbit.com/problems/level-order/" },
+      "binary-tree-zigzag-level-order-traversal": { gfg: "https://www.geeksforgeeks.org/problems/zigzag-tree-traversal/1", ib: "https://www.interviewbit.com/problems/zigzag-level-order-traversal-bt/" },
+      "maximum-depth-of-binary-tree": { gfg: "https://www.geeksforgeeks.org/problems/height-of-binary-tree/1", ib: "https://www.interviewbit.com/problems/max-depth-of-binary-tree/" },
+      "construct-binary-tree-from-preorder-and-inorder-traversal": { gfg: "https://www.geeksforgeeks.org/problems/construct-tree-1/1", ib: "https://www.interviewbit.com/problems/construct-binary-tree-from-inorder-and-preorder/" },
+      "balanced-binary-tree": { gfg: "https://www.geeksforgeeks.org/problems/check-for-balanced-tree/1", ib: "https://www.interviewbit.com/problems/balanced-binary-tree/" },
+      "path-sum": { gfg: "https://www.geeksforgeeks.org/problems/root-to-leaf-path-sum/1", ib: "https://www.interviewbit.com/problems/path-sum/" },
+      "flatten-binary-tree-to-linked-list": { gfg: "https://www.geeksforgeeks.org/problems/flatten-binary-tree-to-linked-list/1", ib: "https://www.interviewbit.com/problems/flatten-binary-tree-to-linked-list/" },
+      "binary-tree-maximum-path-sum": { gfg: "https://www.geeksforgeeks.org/problems/maximum-path-sum-from-any-node/1", cn: "https://www.naukri.com/code360/problems/maximum-sum-path-of-a-binary-tree_1214968" },
+      "invert-binary-tree": { gfg: "https://www.geeksforgeeks.org/problems/mirror-tree/1", ib: "https://www.interviewbit.com/problems/invert-the-binary-tree/" },
+      "diameter-of-binary-tree": { gfg: "https://www.geeksforgeeks.org/problems/diameter-of-binary-tree/1", cn: "https://www.naukri.com/code360/problems/diameter-of-binary-tree_920552" },
+      // Heaps
+      "kth-largest-element-in-an-array": { gfg: "https://www.geeksforgeeks.org/problems/kth-largest-element-in-a-stream2220/1", cn: "https://www.naukri.com/code360/problems/kth-largest-element_893056" },
+      // Graphs
+      "clone-graph": { gfg: "https://www.geeksforgeeks.org/problems/clone-graph/1", ib: "https://www.interviewbit.com/problems/clone-graph/" },
+      "rotting-oranges": { gfg: "https://www.geeksforgeeks.org/problems/rotten-oranges2536/1", cn: "https://www.naukri.com/code360/problems/rotting-oranges_983914" },
+      // Graphs Advanced
+      // DP - 1D
+      "climbing-stairs": { gfg: "https://www.geeksforgeeks.org/problems/count-ways-to-reach-the-nth-stair-1587115620/1", cn: "https://www.naukri.com/code360/problems/climbing-stairs_920510", ib: "https://www.interviewbit.com/problems/stairs/" },
+      "word-break": { gfg: "https://www.geeksforgeeks.org/problems/word-break1352/1", ib: "https://www.interviewbit.com/problems/word-break/" },
+      "house-robber": { gfg: "https://www.geeksforgeeks.org/problems/stickler-theif-1587115621/1", cn: "https://www.naukri.com/code360/problems/house-robber_839733" },
+      "longest-increasing-subsequence": { gfg: "https://www.geeksforgeeks.org/problems/longest-increasing-subsequence-1587115620/1", cn: "https://www.naukri.com/code360/problems/longest-increasing-subsequence_630459", ib: "https://www.interviewbit.com/problems/longest-increasing-subsequence/" },
+      "coin-change": { gfg: "https://www.geeksforgeeks.org/problems/number-of-coins1702/1", ib: "https://www.interviewbit.com/problems/coin-sum-infinite/" },
+      "longest-common-subsequence": { gfg: "https://www.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1", cn: "https://www.naukri.com/code360/problems/longest-common-subsequence_624879", ib: "https://www.interviewbit.com/problems/longest-common-subsequence/" },
+      "partition-equal-subset-sum": { gfg: "https://www.geeksforgeeks.org/problems/subset-sum-problem2014/1", cn: "https://www.naukri.com/code360/problems/partition-equal-subset-sum_892980" },
+      "min-cost-climbing-stairs": { gfg: "https://www.geeksforgeeks.org/problems/min-cost-climbing-stairs/1", cn: "https://www.naukri.com/code360/problems/min-cost-climbing-stairs_920516" },
+      // DP - 2D & Grid
+      "unique-paths": { gfg: "https://www.geeksforgeeks.org/problems/number-of-unique-paths5339/1", cn: "https://www.naukri.com/code360/problems/unique-paths_920332", ib: "https://www.interviewbit.com/problems/grid-unique-paths/" },
+      "edit-distance": { gfg: "https://www.geeksforgeeks.org/problems/edit-distance3702/1", cn: "https://www.naukri.com/code360/problems/edit-distance_630420", ib: "https://www.interviewbit.com/problems/edit-distance/" },
+      // DP - Advanced
+      // Backtracking
+      "letter-combinations-of-a-phone-number": { gfg: "https://www.geeksforgeeks.org/problems/possible-words-from-phone-digits-1587115620/1", ib: "https://www.interviewbit.com/problems/letter-phone/" },
+      "combination-sum": { gfg: "https://www.geeksforgeeks.org/problems/combination-sum-1587115620/1", ib: "https://www.interviewbit.com/problems/combination-sum/" },
+      "combination-sum-ii": { gfg: "https://www.geeksforgeeks.org/problems/combination-sum-ii-1664263832/1", ib: "https://www.interviewbit.com/problems/combination-sum-ii/" },
+      "permutations": { gfg: "https://www.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1", cn: "https://www.naukri.com/code360/problems/permutations_839564", ib: "https://www.interviewbit.com/problems/permutations/" },
+      "n-queens": { gfg: "https://www.geeksforgeeks.org/problems/n-queen-problem0315/1", cn: "https://www.naukri.com/code360/problems/n-queens_696453", ib: "https://www.interviewbit.com/problems/nqueens/" },
+      "subsets": { gfg: "https://www.geeksforgeeks.org/problems/subsets-1613027340/1", ib: "https://www.interviewbit.com/problems/subset/" },
+      "palindrome-partitioning": { gfg: "https://www.geeksforgeeks.org/problems/palindromic-patitioning4845/1", ib: "https://www.interviewbit.com/problems/palindrome-partitioning/" },
+      // Greedy
+      // Bit Manipulation
+      "single-number": { gfg: "https://www.geeksforgeeks.org/problems/single-number1014/1", cn: "https://www.naukri.com/code360/problems/single-number_845498" },
+      // Math
+      // Design
+      "binary-search-tree-iterator": { gfg: "https://www.geeksforgeeks.org/problems/binary-search-tree-iterator/1", ib: "https://www.interviewbit.com/problems/bst-iterator/" },
+      // Union Find
+    };
+
     // State — load from localStorage
     let solved = new Set(JSON.parse(localStorage.getItem('lc350_solved') || '[]'));
     let currentDiff = 'All';
@@ -1560,6 +1842,7 @@
               <th>Problem</th>
               <th>Difficulty</th>
               <th style="min-width:160px">Tags</th>
+              <th style="min-width:180px">Practice On</th>
             </tr>
           </thead>
           <tbody id="tbody-${sectionNum}"></tbody>
@@ -1582,6 +1865,14 @@
           tr.dataset.id = id;
           tr.dataset.snum = sectionNum;
 
+          const plinks = PLATFORM_LINKS[slug] || {};
+          let platformHTML = '';
+          if (plinks.gfg) platformHTML += `<a class="platform-badge gfg" href="${plinks.gfg}" target="_blank" rel="noopener" title="GeeksforGeeks">GFG</a>`;
+          if (plinks.cn) platformHTML += `<a class="platform-badge cn" href="${plinks.cn}" target="_blank" rel="noopener" title="Coding Ninjas">CN</a>`;
+          if (plinks.ib) platformHTML += `<a class="platform-badge ib" href="${plinks.ib}" target="_blank" rel="noopener" title="InterviewBit">IB</a>`;
+          if (plinks.hr) platformHTML += `<a class="platform-badge hr" href="${plinks.hr}" target="_blank" rel="noopener" title="HackerRank">HR</a>`;
+          if (plinks.cf) platformHTML += `<a class="platform-badge cf" href="${plinks.cf}" target="_blank" rel="noopener" title="Codeforces">CF</a>`;
+
           tr.innerHTML = `
         <td>
           <button class="check-btn ${solved.has(id) ? 'checked' : ''}" onclick="toggleSolve('${id}', this, '${sectionNum}')"></button>
@@ -1594,6 +1885,7 @@
         </td>
         <td><span class="diff ${diff}">${diff}</span></td>
         <td><div class="tags">${tagArr.map(t => `<span class="tag">${t.trim()}</span>`).join('')}</div></td>
+        <td>${platformHTML ? `<div class="platform-links">${platformHTML}</div>` : ''}</td>
       `;
           if (solved.has(id)) tr.classList.add('solved');
           tbody.appendChild(tr);
