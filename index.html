@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leetcode Google Top 350 Interview Questions</title>
+  <title>Leetcode Google Top 368 Interview Questions</title>
   <link rel="icon" href="https://toppng.com/uploads/preview/google-favicon-vector-11573977012mieoxurfqx.png"
     type="image/x-icon">
   <link
@@ -873,15 +873,15 @@
     </div>
     <div
       style="font-family:'Syne',sans-serif;font-size:clamp(16px,2.5vw,26px);font-weight:600;color:var(--text-muted);margin-bottom:14px;letter-spacing:-0.5px">
-      Top 350 LeetCode Problems — Curated for Google Freshers
+      Top 368 LeetCode Problems — Curated for Google Freshers
     </div>
     <div class="header-sub">
       Every problem hand-picked for Google's L3 fresher interview patterns — based on real interview frequency data.
-      Covers all critical DSA topics with the right depth to crack Google interviews. Built for a 5-month focused
+      Covers all critical DSA topics with the right depth to crack Google interviews. Now includes Segment Tree & BIT, String Matching (KMP/Z-algo/Rabin-Karp), and Reservoir Sampling. Built for a 5-month focused
       preparation plan.
     </div>
     <div class="stats-bar" id="statsBar">
-      <div class="stat-chip"><span class="val" id="totalCount">350</span><span class="lbl">Total</span></div>
+      <div class="stat-chip"><span class="val" id="totalCount">368</span><span class="lbl">Total</span></div>
       <div class="stat-chip yellow"><span class="val" id="medCount">—</span><span class="lbl">Medium</span></div>
       <div class="stat-chip red"><span class="val" id="hardCount">—</span><span class="lbl">Hard</span></div>
       <div class="stat-chip green"><span class="val" id="solvedCount">0</span><span class="lbl">Solved</span></div>
@@ -893,7 +893,7 @@
     <div class="progress-bar-wrap">
       <div class="progress-bar" id="progressBar" style="width:0%"></div>
     </div>
-    <span class="progress-count" id="progressText">0 / 350</span>
+    <span class="progress-count" id="progressText">0 / 368</span>
     <button class="reset-btn" onclick="resetProgress()">Reset</button>
   </div>
 
@@ -999,7 +999,7 @@
   <div class="main" id="mainContent"></div>
 
   <div class="footer">
-    Built for Google Fresher Interview Prep · 350 High-Frequency Curated Problems · Track your progress
+    Built for Google Fresher Interview Prep · 368 High-Frequency Curated Problems · Track your progress
     session-by-session ·
     <span style="color:var(--g-blue)">Good Luck! 🚀</span>
   </div>
@@ -1429,6 +1429,30 @@
       [642, "Design Search Autocomplete System", "design-search-autocomplete-system", "Hard", "Design", "trie,heap,hash map"],
       [895, "Maximum Frequency Stack", "maximum-frequency-stack", "Hard", "Design", "hash map,stack grouping"],
 
+      // ========== SEGMENT TREE & BINARY INDEXED TREE (8) ==========
+      [307, "Range Sum Query - Mutable", "range-sum-query-mutable", "Medium", "Segment Tree & BIT", "segment tree,BIT,Fenwick tree"],
+      [308, "Range Sum Query 2D - Mutable", "range-sum-query-2d-mutable", "Hard", "Segment Tree & BIT", "2D BIT,segment tree,prefix sum"],
+      [315, "Count of Smaller Numbers After Self", "count-of-smaller-numbers-after-self", "Hard", "Segment Tree & BIT", "BIT,merge sort,coordinate compression"],
+      [327, "Count of Range Sum", "count-of-range-sum", "Hard", "Segment Tree & BIT", "segment tree,merge sort,BIT"],
+      [493, "Reverse Pairs", "reverse-pairs", "Hard", "Segment Tree & BIT", "BIT,merge sort,divide & conquer"],
+      [699, "Falling Squares", "falling-squares", "Hard", "Segment Tree & BIT", "segment tree,coordinate compression"],
+      [732, "My Calendar III", "my-calendar-iii", "Hard", "Segment Tree & BIT", "segment tree,lazy propagation"],
+      [1649, "Create Sorted Array through Instructions", "create-sorted-array-through-instructions", "Hard", "Segment Tree & BIT", "BIT,merge sort,coordinate compression"],
+
+      // ========== STRING MATCHING (7) ==========
+      [28, "Find the Index of the First Occurrence in a String", "find-the-index-of-the-first-occurrence-in-a-string", "Easy", "String Matching", "KMP,two pointers,string"],
+      [214, "Shortest Palindrome", "shortest-palindrome", "Hard", "String Matching", "KMP,Z-algorithm,string hashing"],
+      [459, "Repeated Substring Pattern", "repeated-substring-pattern", "Easy", "String Matching", "KMP,string period"],
+      [686, "Repeated String Match", "repeated-string-match", "Medium", "String Matching", "Rabin-Karp,KMP,string"],
+      [796, "Rotate String", "rotate-string", "Easy", "String Matching", "KMP,string concatenation"],
+      [1392, "Longest Happy Prefix", "longest-happy-prefix", "Hard", "String Matching", "KMP failure function,Z-algorithm"],
+      [1764, "Form Array by Concatenating Subarrays of Another Array", "form-array-by-concatenating-subarrays-of-another-array", "Medium", "String Matching", "KMP,greedy,pattern matching"],
+
+      // ========== RESERVOIR SAMPLING (3) ==========
+      [382, "Linked List Random Node", "linked-list-random-node", "Medium", "Reservoir Sampling", "reservoir sampling,randomization"],
+      [398, "Random Pick Index", "random-pick-index", "Medium", "Reservoir Sampling", "reservoir sampling,hash map"],
+      [497, "Random Point in Non-overlapping Rectangles", "random-point-in-non-overlapping-rectangles", "Medium", "Reservoir Sampling", "reservoir sampling,binary search,prefix sum"],
+
     ];
 
     // Deduplicate by slug
@@ -1807,6 +1831,9 @@
       'Bit Manipulation': '💻',
       'Math': '🧮',
       'Design': '🏗️',
+      'Segment Tree & BIT': '🌲',
+      'String Matching': '🔎',
+      'Reservoir Sampling': '🎲',
     };
 
     function buildUI() {
